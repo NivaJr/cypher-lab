@@ -1,0 +1,41 @@
+header {
+    background-color: #2D2D5F; 
+    color: #ffffff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;     
+    align-items: center;    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    min-width:100%;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+.logo img {
+    width: 70px;
+}
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+nav ul li:hover {
+    text-decoration: underline;
+}
