@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios - CypherLab</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/pages/challenge.css">
+    <link rel="stylesheet" href="../assets/css/components/header.css">
+</head>
+<body>
+    <div class="challengesContainer">
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="../images/app-icon.png" alt="CypherLab Icon">
+                    <span>CypherLab</span>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="*">Início</a></li>
+                    <li><a href="*">Desafios</a></li>
+                    <li><a href="*">Rankings</a></li>
+                    <li><a href="*">Perfil</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="challenge-content">
+            
+            <div class="challenge-title">
+                <h1>Desafio: {desafio.title}</h1>
+                <p>{desafio.category}</p>
+            </div>
+    
+            <div class="challenge-description">
+                <p class="description-title">Instruções</p>
+                <p class="instructions">{desafio.description}</p>
+                <div class="challenge-details">
+                    <p class="details">Dificuldade: {desafio.difficulty}</p>
+                    <p class="details">Categoria: {desafio.category}</p>
+                    <p class="details">Recompensa: {desafio.reward} pontos</p>
+                </div>
+            </div>
+    
+            <div class="challenge-submit">
+                <h2>Digite sua resposta:</h2>
+                <div class="challenge-submit-input">
+                    <input type="text" placeholder="Digite o texto cifrado aqui">
+                    <button>Verificar resposta</button>
+
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+
+
+
+    
+</body>
+</html>
