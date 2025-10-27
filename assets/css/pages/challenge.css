@@ -70,6 +70,7 @@
 
 }
 .challenge-submit-input input{ 
+    color: white;
     background-color: #0F0F23;
     padding: 10px;
     border: 1px solid #ccc;
@@ -82,4 +83,10 @@
     padding: 10px;
     background: #7C3AED;
     background: linear-gradient(90deg, rgba(124, 58, 237, 1) 0%, rgba(79, 70, 229, 1) 100%);
+}
+
+.feedback {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
 }
