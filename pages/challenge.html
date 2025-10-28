@@ -29,17 +29,17 @@
         <div class="challenge-content">
             
             <div class="challenge-title">
-                <h1>Desafio: {desafio.title}</h1>
-                <p>{desafio.category}</p>
+                <h1 id="challengeTitle"></h1>
+                <p id="challengeCategory">{desafio.category}</p>
             </div>
     
             <div class="challenge-description">
                 <p class="description-title">Instruções</p>
-                <p class="instructions">{desafio.description}</p>
+                <p class="instructions" id="instructions">{desafio.description}</p>
                 <div class="challenge-details">
-                    <p class="details">Dificuldade: {desafio.difficulty}</p>
-                    <p class="details">Categoria: {desafio.category}</p>
-                    <p class="details">Recompensa: {desafio.reward} pontos</p>
+                    <p class="details" id="difficulty">Dificuldade: {desafio.difficulty}</p>
+                    <p class="details" id="category">Categoria: {desafio.category}</p>
+                    <p class="details" id="reward">Recompensa: {desafio.reward} pontos</p>
                 </div>
             </div>
     
@@ -54,6 +54,6 @@
         </div>
 
     </div>
-    <script src="../assets/js/pages/challenge.js"></script>
+    <script src="../assets/js/pages/challenge.js" type="module"></script>
 </body>
 </html>
