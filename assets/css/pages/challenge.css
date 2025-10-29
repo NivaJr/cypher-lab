@@ -83,3 +83,32 @@
     font-weight: bold;
 }
 
+.not-found-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.not-found-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.not-found-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 24px;
+    background: #7C3AED;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 1) 0%, rgba(79, 70, 229, 1) 100%);
+    font-weight: bold;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+
+
