@@ -34,15 +34,23 @@
        
 
     } catch {
-        challengeTitle.innerText = "Desafio não encontrado"
-        challengeCategory.innerText = ""
-        category.innerText = "Desafio não encontrado"
-        difficulty.innerText = "Desafio não encontrado"
-        instructions.innerText = "Desafio não encontrado"
-        reward.innerText = "Desafio não encontrado"
+        const challengeContent = document.querySelector('.challenge-content');
+        challengeContent.innerHTML = `
+            <div class="not-found-content">
+                <h1 class="not-found-title">
+                    Desafio não encontrado
+                </h1>
+                <p class="not-found-text">
+                    O desafio que você procura não existe
+                </p>
+                <button class="btn">
+                    Retornar para o dashboard
+                </button>
+            </div>
+        `;
 
-        form.style.display = 'none'
-        challengeDetails.style.display = 'none'
+
+    
     }
 
 
