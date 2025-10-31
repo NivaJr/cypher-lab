@@ -27,33 +27,8 @@
         </header>
 
         <div class="challenge-content">
-            
-            <div class="challenge-title">
-                <h1 id="challengeTitle">    </h1>
-                <p id="challengeCategory">{desafio.category}</p>
-            </div>
-    
-            <div class="challenge-box challenge-description">
-                <p class="description-title">Instruções</p>
-                <p class="instructions" id="instructions">{desafio.description}</p>
-                <div class="challenge-details" id="challenge-details">
-                    <p class="details" id="difficulty">Dificuldade: {desafio.difficulty}</p>
-                    <p class="details" id="category">Categoria: {desafio.category}</p>
-                    <p class="details" id="reward">Recompensa: {desafio.reward} pontos</p>
-                </div>
-            </div>
-    
-            <form class="challenge-box challenge-submit" id="submitForm">
-                <h2>Digite sua resposta:</h2>
-                <div class="challenge-submit-input">
-                    <input type="text" id="submitInput" placeholder="Digite o texto cifrado aqui...">
-                    <button type="submit" id="submitButton">Verificar resposta</button>
-                </div>
-                <div class="feedback" id="submitFeedback"></div>
-            </form>
+            <p class="loading">Carregando...</p>
         </div>
-
-    </div>
     <script src="../assets/js/pages/challenge.js" type="module"></script>
 </body>
 </html>
