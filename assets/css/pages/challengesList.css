@@ -10,13 +10,46 @@
     align-items: center;
 }
 
-.card {
-    background-color: #FFF ;
-    color: black;
+.listHeader {
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    gap: 30px;
+    background-color: #0C0C13;
+    padding: 20px;
+    width: 100%;
+}
+
+.titleList {
+  margin: 10px 24px;
+}
+
+.cardDiff {
+    text-align: center  ;
+    padding: 0 5px;
+    border-radius: 10px;
+    background-color: #36d3993d;
+    color: #36D399;
+}
+
+.card {
+    background-color: #0F0F23 ;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: #282834 2px solid;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #0f0f23b0;
+    cursor: pointer;
+
+}
+
+@media screen {
+    
 }
