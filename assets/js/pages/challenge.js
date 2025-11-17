@@ -1,7 +1,8 @@
     import { API_URL, fetchChallenge } from "../services/challengeService.js"
     
 
-    const challengeId = 1
+const params = new URLSearchParams(window.location.search);
+const challengeId = parseInt(params.get('challengeId') || '1', 10);
     
     
     const challengeContent = document.querySelector('.challenge-content');

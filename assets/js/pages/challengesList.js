@@ -9,22 +9,28 @@ fetchAllChallenges()
     challenges.forEach(challenge =>  
     {
 
-        for (let i= 0; i < 5; i++) {
             challengesList.innerHTML += `
-                
+            
             <div class="card">
-<div class="statusIndicator" id="statusIndicator">Done</div>
-                    <div class="titleContent">
-                        <p class="cardTitle" id="cardTitle">${challenge.id}. ${challenge.title}</p>
-                        <p class="cardDiff" id="cardDiff">${challenge.difficulty}</p>
-                    </div>
-                    <p class="cardCategory" id="cardCategory">${challenge.category}</p>
-                    <p class="cardReward" id="cardReward">${challenge.reward}</p>
-                    <p class="cardAction" id="cardAction">Done</p>
+            <div class="statusIndicator">Done</div>
+            <div class="titleContent">
+            <p class="cardTitle">${challenge.id}. ${challenge.title}</p>
+            <p class="cardDiff">${challenge.difficulty}</p>
             </div>
-            `;
-        }
+                    <p class="cardCategory">${challenge.category}</p>
+                    <p class="cardReward">${challenge.reward}</p>
+                    <button class="cardAction" data-challenge-id="${challenge.id}">Iniciar ></button>
+                    </div>
+                    `;
+                    
+                    challengesList.addEventListener('click', (event) => {
+        const button = event.target.closest('.cardAction');
+        if (!button) return;
+        const { challengeId } = button.dataset;
+        window.location.href = `../../../pages/challenge.html?challengeId=${challengeId}`;
+    });
     })
+    
     const cardDiff = document.querySelectorAll('.cardDiff');
     cardDiff.forEach( diff => {
         if (diff.innerText === 'Fácil') {
