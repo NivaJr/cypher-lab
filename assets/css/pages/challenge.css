@@ -83,6 +83,7 @@
     font-weight: bold;
 }
 
+
 .not-found-content {
     display: flex;
     flex-direction: column;
@@ -109,6 +110,20 @@
 }
 .btn:hover {
     opacity: 0.9;
+}
+
+.challenge-content > :not(.loading) {
+    display: none;
+}
+
+.challenge-content.loaded > :not(.loading) {
+    display: block;
+}
+
+.loading {
+    text-align: center;
+    color: #bbb;
+    padding: 1rem 0;
 }
 
 

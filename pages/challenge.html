@@ -19,16 +19,41 @@
 
                 <ul class="nav-links">
                     <li><a href="*">Início</a></li>
-                    <li><a href="*">Desafios</a></li>
+                    <li><a href="/pages/challengesList.html">Desafios</a></li>
                     <li><a href="*">Rankings</a></li>
                     <li><a href="*">Perfil</a></li>
                 </ul>
             </nav>
         </header>
 
+        <p class="loading">Carregando...</p>
+        
         <div class="challenge-content">
-            <p class="loading">Carregando...</p>
+            <div class="challenge-title">
+                <h1 id="challengeTitle"></h1>
+                <p id="challengeCategory"></p>
+            </div>
+        
+            <div class="challenge-box challenge-description">
+            <p class="description-title">Instruções</p>
+            <p class="instructions" id="instructions"> </p>
+        
+            <div class="challenge-details" id="challenge-details">
+            <p class="details" id="difficulty"></p>
+            <p class="details" id="category"></p>
+            <p class="details" id="reward"></p>
         </div>
+    </div>
+        
+    <form class="challenge-box challenge-submit" id="submitForm">
+        <h2>Digite sua resposta:</h2>
+        <div class="challenge-submit-input">
+            <input type="text" id="submitInput" placeholder="Digite o texto cifrado aqui..." autocomplete=off>
+            <button type="submit" id="submitButton">Verificar resposta</button>
+        </div>
+        <div class="feedback" id="submitFeedback"></div>
+    </form>
+    </div>
     <script src="../assets/js/pages/challenge.js" type="module"></script>
 </body>
 </html>
