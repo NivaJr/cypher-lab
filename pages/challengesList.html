@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/components/header.css">
-    <link rel="stylesheet" href="../assets/css/pages/challenge.css">
+    <link rel="stylesheet" href="../assets/css/pages/challengesList.css">
 </head>
 <body>
      
@@ -25,6 +25,33 @@
                 </ul>
             </nav>
         </header>
+        <div class="challengesContainer">
+            <div class="titleList">
+                <h1>Lista de Desafios</h1>
+                <p>Escolha um desafio</p>
+            </div>
+            <div class="listContainer" id="listContainer">
+                <div class="listHeader">
+                    <p class="statusHeader">Status</p>
+                    <p class="titleHeader">Título</p>
+                    <p class="categoryHeader">Categoria</p>
+                    <p class="rewardHeader">Recompensa</p>
+                    <p class="actionHeader">Ação</p>
+                </div>
+
+                <div class="card">
+                    <div class="statusIndicator" id="statusIndicator">Done</div>
+                    <div class="titleContent">
+                        <p class="cardTitle" id="cardTitle">Desafio 1</p>
+                        <p class="cardDiff" id="cardDiff">Easy</p>
+                    </div>
+                    <p class="cardCategory" id="cardCategory">Categoria</p>
+                    <p class="cardReward" id="cardReward">Recompensa</p>
+                    <p class="cardAction" id="cardAction">Done</p>
+                </div>
+            </div>
+
+        </div>
 
 
 <script src="../assets/js/pages/challengesList.js" type="module"></script>
