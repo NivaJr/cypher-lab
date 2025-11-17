@@ -1,8 +1,7 @@
-    import { fetchChallenge } from "../services/challengeService.js"
+    import { API_URL, fetchChallenge } from "../services/challengeService.js"
     
-    const API_URL = 'http://localhost:8080/api';
-    
-    const challengeId = 2
+
+        const challengeId = 1
     
     
     const challengeContent = document.querySelector('.challenge-content');
@@ -16,9 +15,10 @@
     
     
     
-    
     fetchChallenge(challengeId)
     .then(challengeData => {
+        console.log(challengeData)
+        console.log(challengeData.category)
         challengeContent.innerHTML = `
         <div class="challenge-title">
         <h1 id="challengeTitle">Desafio: ${challengeData.title}</h1>
@@ -39,7 +39,7 @@
         <form class="challenge-box challenge-submit" id="submitForm">
         <h2>Digite sua resposta:</h2>
         <div class="challenge-submit-input">
-        <input type="text" id="submitInput" placeholder="Digite o texto cifrado aqui...">
+        <input type="text" id="submitInput" placeholder="Digite o texto cifrado aqui..." autocomplete=off>
         <button type="submit" id="submitButton">Verificar resposta</button>
         </div>
         <div class="feedback" id="submitFeedback"></div>
