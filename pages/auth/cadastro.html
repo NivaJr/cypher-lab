@@ -20,7 +20,7 @@
 
         <form action="#">
             <div class="input-box">
-                <label for="N">Nome de usuário</label>
+                <label for="username">Nome de usuário</label>
                 <input type="text" id="username" placeholder="seu_usuario" required>
             </div>
 
@@ -43,7 +43,7 @@
 
             <div class="terms-box">
                 <label>
-                    <input type="checkbox" id="checkbox" required> Eu aceito os <a href="#">Termos de Serviço</a>
+                    <input type="checkbox" required> Eu aceito os <a href="#">Termos de Serviço</a>
                 </label>
             </div>
 
@@ -56,12 +56,12 @@
             </div>
             
             <div class="social-buttons">
-                <a href="http://localhost:8081/oauth2/authorization/google" class="btn-social">
+                <button class="btn-social">
                     <i class='bx bxl-google'></i>
-                </a>
-                <a href="http://localhost:8081/oauth2/authorization/github" class="btn-social">
-                    <i class='bx bxl-github'></i>
-                </a>
+                </button>
+                <button class="btn-social">
+                    <i class='bx bxl-twitter'></i>
+                </button>
             </div>
 
             <div class="signup-link">
@@ -70,30 +70,11 @@
         </div>
     </div>
 
-    <div id="terms-modal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Termos de Serviço e Privacidade</h2>
-            <span class="close-modal">&times;</span>
-        </div>
-        <div class="modal-body">
-            <p>Bem-vindo ao CypherLab. Ao utilizar nossos serviços, você concorda com o seguinte:</p>
-            <ul>
-                <li><strong>Uso de Dados:</strong> Coletamos seu email e nome apenas para autenticação.</li>
-                <li><strong>Responsabilidade:</strong> O usuário é responsável por manter sua senha segura.</li>
-                <li><strong>Conduta:</strong> É proibido usar a plataforma para ataques maliciosos externos.</li>
-                </ul>
-            <p>Estes termos podem ser atualizados a qualquer momento.</p>
-        </div>
-        <div class="modal-footer">
-            <button id="btn-accept-terms" class="btn-login" style="width: auto; padding: 0 20px;">Li e Aceito</button>
-        </div>
-    </div>
-    </div>
-
     <footer class="page-footer">
         <p>© 2025 CypherLab. Todos os direitos reservados.</p>
     </footer>
+
     <script src="../../assets/js/script.js"></script>
+
 </body>
 </html>

@@ -22,23 +22,23 @@
         <form action="#">
             <div class="input-box">
                 <label for="email">Email</label>
-                <input type="email" id="email-login" placeholder="seu@email.com" required>
+                <input type="email" id="email" placeholder="seu@email.com" required>
             </div>
 
             <div class="input-box">
                 <label for="password">Senha</label>
-                <input type="password" id="senha-login" placeholder="••••••••" required>
+                <input type="password" id="password" placeholder="••••••••" required>
                 <i class='bx bx-hide eye-icon'></i>
             </div>
 
             <div class="remember-forgot">
                 <label>
-                    <input type="checkbox" id="remember-me"> Lembrar de mim
+                    <input type="checkbox"> Lembrar de mim
                 </label>
                 <a href="#">Esqueceu a senha?</a>
             </div>
 
-            <button type="submit" class="btn-login" id="btn-login">Entrar</button>
+            <button type="submit" class="btn-login">Entrar</button>
         </form>
 
         <div class="login-footer">
@@ -51,12 +51,12 @@
             </div>
             
             <div class="social-buttons">
-                <a href="http://localhost:8081/oauth2/authorization/google" class="btn-social">
+                <button class="btn-social">
                     <i class='bx bxl-google'></i>
-                </a>
-                <a href="http://localhost:8081/oauth2/authorization/github" class="btn-social">
-                    <i class='bx bxl-github'></i>
-                </a>
+                </button>
+                <button class="btn-social">
+                    <i class='bx bxl-twitter'></i>
+                </button>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
         <p>© 2025 CypherLab. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="../../assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
 </html>
