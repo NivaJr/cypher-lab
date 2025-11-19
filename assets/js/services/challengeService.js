@@ -18,3 +18,12 @@ export const fetchAllChallenges =  async () => {
     }
     return res.json();
 }
+
+export const fetchChallengesByModule = async (moduleId) => {
+    const url = API_URL + `/module/${moduleId}/challenges`;
+    const res = await fetch(url)
+    if(!res.ok) {
+        throw new Error('Erro ao buscar os desafios do módulo', res.status)
+    }   
+    return res.json();
+}
