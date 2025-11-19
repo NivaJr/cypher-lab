@@ -1,0 +1,306 @@
+main {
+    padding: 2rem;
+    background-color: #0F0F23;
+    min-height: 100vh;
+}
+
+/* Stats Container */
+.statsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.statCard.purple {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+}
+
+.statCard.green {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.statCard.orange {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.statCard.violet {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+}
+
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statTitle {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    color: white;
+}
+
+.statIcon {
+    font-size: 1.5rem;
+    background-color: white;
+    border-radius: 20%;
+    padding: 0.25rem;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: white;
+}
+
+.statSubtitle {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    color: white;
+}
+
+/* Progress Section */
+.progressSection {
+    margin-bottom: 2rem;
+}
+
+.progressSection h2,
+.modulesSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.progressCard {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.progressPercentage {
+    color: #10B981;
+    font-weight: 600;
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background-color: #2D2D5F;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #7C3AED 0%, #10B981 100%);
+    transition: width 0.3s ease;
+}
+
+.progressStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+}
+
+.statDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.statDot.completed {
+    background-color: #10B981;
+}
+
+.statDot.inProgress {
+    background-color: #F59E0B;
+}
+
+.statDot.blocked {
+    background-color: #6B7280;
+}
+
+.statDot.total {
+    background-color: #7C3AED;
+}
+
+/* Modules Section */
+.modulesSection {
+    margin-bottom: 2rem;
+}
+
+.modulesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.moduleCard {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.moduleCard:hover {
+    transform: translateY(-4px);
+}
+
+.moduleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.moduleIcon {
+    font-size: 2rem;
+}
+
+.moduleStatus {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.moduleStatus.completed {
+    background-color: #10B98140;
+    color: #10B981;
+}
+
+.moduleStatus.inProgress {
+    background-color: #F59E0B40;
+    color: #F59E0B;
+}
+
+.moduleStatus.locked {
+    background-color: #6B728040;
+    color: #9CA3AF;
+}
+
+.moduleTitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.moduleSubtitle {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.moduleProgress {
+    margin-bottom: 1rem;
+}
+
+.moduleProgressText {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: white;
+}
+
+.moduleProgressBar {
+    width: 100%;
+    height: 6px;
+    background-color: #2D2D5F;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.moduleProgressFill {
+    height: 100%;
+    background-color: #10B981;
+    transition: width 0.3s ease;
+}
+
+.moduleButton {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: none;
+}
+
+.moduleButton:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.moduleButton.primary {
+    background: linear-gradient(90deg, #7C3AED 0%, #4F46E5 100%);
+    color: white;
+}
+
+.moduleButton.secondary {
+    background-color: #2D2D5F;
+    color: white;
+}
+
+.moduleButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    .statsContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .modulesContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+.leftSide img {
+    width: 70px;        
+    height: 70px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+/* opção responsiva */
+@media (max-width: 480px) {
+    .leftSide img{
+        width: 5px;
+        height: 5px;
+    }
+}   

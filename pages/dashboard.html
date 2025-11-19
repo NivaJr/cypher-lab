@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CypherLab</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components/header.css">
+    <link rel="stylesheet" href="../assets/css/pages/dashboard.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="leftSide">
+                <img src="../images/app-icon.png" alt="CypherLab Icon">
+                <a href="index.html">CypherLab</a>
+            </div>
+            <ul>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="challengesList.html">Desafios</a></li>
+                <li><a href="#">Ranking</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+            <div class="rightSide">
+                <div class="userIcon">
+                    <a href="#"><span>nome_usuario</span></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- status cards -->
+        <section class="statsContainer">
+            <div class="statCard purple">
+                <div class="statHeader">
+                    <span class="statTitle">Pontuação Total</span>
+                    <span class="statIcon">🏆</span>
+                </div>
+                <h2 class="statValue" id="totalPoints">0</h2>
+                <p class="statSubtitle">+147 pontos hoje</p>
+            </div>
+
+            <div class="statCard green">
+                <div class="statHeader">
+                    <span class="statTitle">Desafios Concluídos</span>
+                    <span class="statIcon">✅</span>
+                </div>
+                <h2 class="statValue" id="completedChallenges">0</h2>
+                <p class="statSubtitle" id="progressText">0% de progresso</p>
+            </div>
+
+            <div class="statCard orange">
+                <div class="statHeader">
+                    <span class="statTitle">Streak Atual</span>
+                    <span class="statIcon">🔥</span>
+                </div>
+                <h2 class="statValue" id="currentStreak">0 dias</h2>
+                <p class="statSubtitle">Recorde: 18 dias</p>
+            </div>
+
+            <div class="statCard violet">
+                <div class="statHeader">
+                    <span class="statTitle">Ranking</span>
+                    <span class="statIcon">📊</span>
+                </div>
+                <h2 class="statValue" id="ranking">#--</h2>
+                <p class="statSubtitle">Top --% global</p>
+            </div>
+        </section>
+
+        <!-- seção progress  -->
+        <section class="progressSection">
+            <h2>Progresso Geral</h2>
+            <div class="progressCard">
+                <div class="progressHeader">
+                    <span>Progresso dos Módulos</span>
+                    <span class="progressPercentage" id="overallProgress">0% Concluído</span>
+                </div>
+                <div class="progressBar">
+                    <div class="progressFill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="progressStats">
+                    <div class="statItem">
+                        <span class="statDot completed"></span>
+                        <span>Módulos Concluídos: <strong id="modulesCompleted">0</strong></span>
+                    </div>
+                    <div class="statItem">
+                        <span class="statDot inProgress"></span>
+                        <span>Em Andamento: <strong id="modulesInProgress">0</strong></span>
+                    </div>
+                    <div class="statItem">
+                        <span class="statDot blocked"></span>
+                        <span>Bloqueados: <strong id="modulesBlocked">0</strong></span>
+                    </div>
+                    <div class="statItem">
+                        <span class="statDot total"></span>
+                        <span>Total de Pontos: <strong id="totalPointsBottom">0</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- seção módulos -->
+        <section class="modulesSection">
+            <h2>Módulos de Desafios</h2>
+            <div class="modulesContainer" id="modulesContainer">
+                <!-- módulos aqui -->
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/pages/dashboard.js" type="module"></script>
+</body>
+</html>
