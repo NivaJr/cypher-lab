@@ -21,7 +21,7 @@ const moduleId = parseInt(params.get('moduleId'))
                 <p class="cardDiff">${challenge.difficulty}</p>
                 </div>
                         <p class="cardCategory">${challenge.category}</p>
-                        <p class="cardReward">${challenge.reward}</p>
+                        <p class="cardReward">${challenge.reward} pontos</p>
                         <button class="cardAction" data-challenge-id="${challenge.id}">Iniciar ></button>
                         </div>
                         `;
