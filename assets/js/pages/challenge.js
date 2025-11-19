@@ -1,4 +1,5 @@
-    import { API_URL, fetchChallenge } from "../services/challengeService.js"
+import { API_URL } from "../services/api.js";
+import { fetchChallenge } from "../services/challengeService.js"
     
 
 const params = new URLSearchParams(window.location.search);

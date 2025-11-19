@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8080/api';
+import { API_URL } from "./api.js";
 
 export async function fetchChallenge(challengeId) {
     const url = API_URL + `/challenges/${challengeId}`;
