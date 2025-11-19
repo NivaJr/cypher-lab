@@ -39,3 +39,7 @@ nav ul {
 nav ul li:hover {
     text-decoration: underline;
 }
+
+.active {
+    text-decoration: underline;
+}
