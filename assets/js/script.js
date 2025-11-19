@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: email,
                 senha: senha
             };
-
             fetch("http://localhost:8081/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     id: data.userId
                 }));
 
-                window.location.href = "../../dashboard.html";
+                window.location.href = "../dashboard.html";
             })
             .catch(error => {
                 console.error("Erro no login:", error);
