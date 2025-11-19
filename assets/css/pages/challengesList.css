@@ -1,0 +1,77 @@
+.challengesContainer {
+    background-color: #0F0F23; 
+    color: white;
+    min-height: 100vh;
+}
+
+.listContainer {
+    background-color: #0C0C13;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtitleList {
+    color: #68688f;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.listHeader {
+    justify-content: space-between;
+    gap: 30px;
+    background-color: #0C0C13;
+    padding: 20px;
+    width: 100%;
+    color: #68688f;
+}
+
+.listHeader, .card {
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr 1fr 1fr;
+
+    /* text-align: center; */
+}
+
+.titleList {
+  margin: 10px 24px;
+}
+
+.cardDiff {
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 10px;
+}
+
+
+
+.card {
+    width: 100%;
+    background-color: #0F0F23 ;
+    color: rgb(255, 255, 255);
+    justify-content: space-between;
+    border-bottom: #282834 2px solid;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #0f0f23b0;
+
+}
+
+.cardAction {
+    background-color: #1102df;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen {
+    
+}
