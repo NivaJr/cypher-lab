@@ -140,7 +140,7 @@ main {
     background-color: #F59E0B;
 }
 
-.statDot.blocked {
+.statDot.notStarted {
     background-color: #6B7280;
 }
 
@@ -198,7 +198,7 @@ main {
     color: #F59E0B;
 }
 
-.moduleStatus.locked {
+.moduleStatus.notStarted {
     background-color: #6B728040;
     color: #9CA3AF;
 }
