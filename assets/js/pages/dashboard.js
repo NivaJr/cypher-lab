@@ -11,81 +11,6 @@ let idUser = JSON.parse(localStorage.getItem("userData")).id;
 
 const modulesData = await fetchAllModulesProgress(idUser);
 
-// const modulesData = [
-//     {
-//         id: 1,
-//         title: "Criptografia Básica",
-//         description: "10 desafios",
-//         icon: "🔐",
-//         status: "completed",
-//         progress: 100,
-//         totalChallenges: 10
-//     },
-//     {
-//         id: 2,
-//         title: "Análise de Vulnerabilidades",
-//         description: "12 desafios",
-//         icon: "🔍",
-//         status: "inProgress",
-//         progress: 60,
-//         totalChallenges: 12
-//     },
-//     {
-//         id: 3,
-//         title: "Engenharia Social",
-//         description: "8 desafios",
-//         icon: "👥",
-//         status: "inProgress",
-//         progress: 30,
-//         totalChallenges: 8
-//     },
-//     {
-//         id: 4,
-//         title: "Forense Digital",
-//         description: "15 desafios",
-//         icon: "💻",
-//         status: "locked",
-//         progress: 0,
-//         totalChallenges: 15
-//     },
-//     {
-//         id: 5,
-//         title: "Penetration Testing",
-//         description: "18 desafios",
-//         icon: "⚡",
-//         status: "locked",
-//         progress: 0,
-//         totalChallenges: 18
-//     },
-//     {
-//         id: 6,
-//         title: "Malware Analysis",
-//         description: "14 desafios",
-//         icon: "🦠",
-//         status: "locked",
-//         progress: 0,
-//         totalChallenges: 14
-//     },
-//     {
-//         id: 7,
-//         title: "Network Security",
-//         description: "11 desafios",
-//         icon: "🌐",
-//         status: "completed",
-//         progress: 100,
-//         totalChallenges: 11
-//     },
-//     {
-//         id: 8,
-//         title: "Web Application Security",
-//         description: "13 desafios",
-//         icon: "🔒",
-//         status: "inProgress",
-//         progress: 75,
-//         totalChallenges: 13
-//     }
-// ];
-
 const modulesContainer = document.getElementById("modulesContainer");
 
 function getStatusText(status) {
@@ -154,7 +79,7 @@ function updateStats() {
     const notStarted = modulesData.filter(m => m.status === 'notStarted').length;
     
 
-    const totalProgress = modulesData.reduce((sum, m) => sum + (m.status === 'completed' ? 1 : 0), 0);
+    const totalProgress = modulesData.reduce((sum, m) => sum + (m.completionPercentage || 0), 0);   
     const overallProgress = Math.round(totalProgress / modulesData.length);
     
 
