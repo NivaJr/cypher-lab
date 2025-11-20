@@ -1,3 +1,195 @@
-body {
-    font-family: 'Inter', sans-serif;
+:root{
+  --bg-page: #0F172A;
+  --bg-card: #1E293B;
+  --bg-card-inner: #334155;
+  --text: #E5E7EB;
+  --muted: #94A3B8;
+  --slate-600: #475569;
+  --indigo-600: #4F46E5;
+  --indigo-700: #4338CA;
+  --green-600: #16A34A;
+  --orange-500: #F97316;
+  --card-radius: 12px;
+  --container-max: 1280px;
+  --gap: 1.5rem;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body.page{
+  margin:0;
+  background:var(--bg-page);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-family:inherit;
+  line-height:1.4;
+}
+
+/* layout container */
+.container{
+  max-width:var(--container-max);
+  margin:0 auto;
+  padding:0 1rem;
+}
+@media(min-width:640px){ .container{padding:0 1.5rem} }
+@media(min-width:1024px){ .container{padding:0 2rem} }
+
+/* message box */
+.message{
+  position:fixed;
+  top:1.25rem;
+  right:1.25rem;
+  background:#16A34A;
+  color:#fff;
+  padding:0.75rem 1rem;
+  border-radius:0.5rem;
+  box-shadow:0 6px 18px rgba(2,6,23,0.6);
+  z-index:50;
+  transition:all .25s ease;
+}
+.hidden{display:none}
+
+/* NAV */
+.nav{
+  background:var(--bg-card);
+  border-bottom:1px solid rgba(71,85,105,0.35);
+  width:100%;
+  box-shadow:0 4px 12px rgba(2,6,23,0.5);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:4rem;
+}
+.brand{display:flex;align-items:center}
+.brand-icon{height:2rem;width:2rem;color:#818CF8}
+.brand-name{margin-left:0.5rem;font-weight:700;color:#fff;font-size:1.125rem}
+
+/* nav links */
+.nav-center{display:none}
+@media(min-width:768px){ .nav-center{display:block} }
+.nav-links{display:flex;gap:0.75rem;align-items:center}
+.nav-link{
+  color:#CBD5E1;
+  padding:0.375rem 0.6rem;
+  border-radius:0.375rem;
+  text-decoration:none;
+  font-size:0.9rem;
+}
+.nav-link:hover{color:#fff}
+.nav-link.active{
+  background:rgba(148,163,184,0.08);
+  color:#fff;
+}
+
+/* right */
+.nav-right{display:flex;align-items:center}
+.avatar-btn{
+  height:2rem;width:2rem;border-radius:9999px;
+  background:var(--indigo-600);color:#fff;border:0;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+
+/* main layout */
+.main-content{padding:2rem 0}
+.layout-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--gap);
+}
+@media(min-width:1024px){
+  .layout-grid{grid-template-columns: 320px 1fr}
+}
+
+/* cards */
+.card{
+  background:var(--bg-card);
+  border-radius:var(--card-radius);
+  padding:1.25rem;
+  box-shadow:0 8px 24px rgba(2,6,23,0.6);
+}
+.profile-card{padding:1.5rem;text-align:center}
+.profile-inner{display:flex;flex-direction:column;align-items:center}
+
+/* avatar */
+.avatar-img{
+  height:6rem;width:6rem;border-radius:9999px;border:4px solid rgba(71,85,105,0.45);
+  object-fit:cover;
+}
+.profile-name{margin-top:1rem;font-size:1.5rem;font-weight:700;color:#fff}
+.profile-handle{color:#818CF8;margin-top:0.25rem}
+.profile-bio{margin-top:1rem;color:var(--muted);font-size:0.9rem;text-align:center}
+
+/* profile info list */
+.profile-info{margin-top:1.25rem;width:100%;display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start}
+.copy-email, .member-since{display:flex;align-items:center;color:var(--muted);font-size:0.9rem;cursor:default}
+.copy-email .mail-icon, .member-since .calendar-icon{height:1.1rem;width:1.1rem;margin-right:0.6rem;color:#52607A}
+
+/* primary button */
+.btn{display:inline-flex;align-items:center;gap:0.5rem;border:0;padding:0.6rem 0.9rem;border-radius:0.65rem;cursor:pointer}
+.primary-btn{width:100%;background:var(--indigo-600);color:#fff;font-weight:600}
+.primary-btn:hover{background:var(--indigo-700)}
+
+/* stats grid */
+.stats-grid{
+    display:grid;
+  grid-template-columns:1fr;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+@media(min-width:768px){ .stats-grid{grid-template-columns:repeat(3,1fr)} }
+.stat{display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:0.75rem;color:#fff}
+.stat-icon{padding:0.6rem;border-radius:0.5rem;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center}
+.stat-indigo{background:linear-gradient(180deg, rgba(79,70,229,0.12), rgba(79,70,229,0.04))}
+.stat-green{background:linear-gradient(180deg, rgba(16,185,129,0.12), rgba(16,185,129,0.04))}
+.stat-orange{background:linear-gradient(180deg, rgba(249,115,22,0.12), rgba(249,115,22,0.04))}
+
+.muted{color:var(--muted)}
+.big{font-size:1.75rem;font-weight:700}
+.tiny{font-size:0.75rem;margin-top:0.25rem}
+.small{font-size:0.85rem}
+.strong{font-weight:600}
+
+/* achievements */
+.achievements{display:grid;grid-template-columns:1fr;gap:0.75rem;margin-top:0.5rem}
+@media(min-width:768px){ .achievements{grid-template-columns:repeat(2,1fr)} }
+.achievement{display:flex;align-items:center;gap:1rem;padding:0.5rem;border-radius:0.75rem;background:var(--bg-card-inner)}
+.ach-icon{display:flex;align-items:center;justify-content:center;height:2.5rem;width:2.5rem;border-radius:0.75rem}
+.bg-slate{background:var(--slate-600);color:#fff}
+
+/* activity list */
+.activity-list{list-style:none;margin:0;padding:0}
+.activity-item{padding:0.75rem 0;border-bottom:1px solid rgba(71,85,105,0.25)}
+.activity-row{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.activity-main{min-width:0}
+.activity-title{font-weight:600;color:#fff;margin:0}
+.activity-meta{text-align:right}
+.activity-points.plus{color:#34D399;font-weight:700}
+
+/* footer */
+.site-footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:0.8rem;
+  padding:2rem 0;
+  border-top:1px solid rgba(71,85,105,0.25);
+  margin-top:2rem;
+}
+
+/* icons */
+.icon{height:1.25rem;width:1.25rem;display:inline-block;vertical-align:middle}
+/* small helpers */
+.space-x-2 > * + *{margin-left:0.5rem}
+/* responsive tweaks */
+@media(max-width:767px){
+  .profile-info{align-items:flex-start}
+}
+@media(min-width:1024px){
+  .profile-card{position:sticky;top:1.5rem}
+}
+/* end */
+  
+/* ...existing code removed */
