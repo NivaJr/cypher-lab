@@ -1,3 +1,7 @@
+import { AUTH_URL } from "../services/api.js";
+
+const authUrl = AUTH_URL;
+
 document.addEventListener('DOMContentLoaded', () => {
     
     const rememberMeCheckbox = document.getElementById("remember-me");
@@ -61,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(dadosUsuario)
             };
 
-            fetch("http://localhost:8081/auth/register", opcoes)
+            fetch(`${authUrl}/register`, opcoes)
                 .then(response => {
                     if (response.ok) {
                         return response.text();
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: email,
                 senha: senha
             };
-            fetch("http://localhost:8081/auth/login", {
+            fetch(`${authUrl}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginDTO)
