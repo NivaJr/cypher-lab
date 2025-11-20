@@ -24,7 +24,6 @@ export const fetchAllModules =  async () => {
 
 export async function createModule(moduleData) {
     const token = getToken();
-    console.log(token);
     const url = API_URL + `/admin/module`;
     
     const res = await fetch(url, {
@@ -45,7 +44,7 @@ export async function createModule(moduleData) {
 export async function updateModule(moduleId, moduleData) {
     const url = API_URL + `/admin/module/${moduleId}`;
     const token = getToken();
-    
+    console.log(moduleData);
     const res = await fetch(url, {
         method: 'PUT',
         headers: {

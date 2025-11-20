@@ -213,6 +213,42 @@ main {
     justify-content: flex-end;
 }
 
+/* Grid de ícones */
+.iconGrid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.iconOption {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2D2D5F;
+    border: 2px solid #3D3D7F;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.iconOption:hover {
+    background-color: #3D3D7F;
+    border-color: #7C3AED;
+    transform: scale(1.1);
+}
+
+.iconOption.selected {
+    background-color: #7C3AED;
+    border-color: #7C3AED;
+    transform: scale(1.1);
+}
+
+.iconEmoji {
+    font-size: 1.5rem;
+}
+
 /* Grid de módulos */
 .modulesSection {
     margin-top: 2rem;
@@ -243,12 +279,23 @@ main {
     margin-bottom: 1rem;
 }
 
+.moduleCardTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.moduleCardIcon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
 .moduleCardTitle {
     color: white;
     font-size: 1.25rem;
     font-weight: bold;
     flex: 1;
-    margin-right: 1rem;
 }
 
 .moduleActions {

@@ -1,8 +1,10 @@
 import { fetchAllModules } from "../services/moduleService.js";
 import { createModule, updateModule, deleteModule } from "../services/moduleService.js";
+import { MODULE_ICONS, getIconById } from "../constants/moduleIcons.js";
 
 let modules = [];
 let currentEditingId = null;
+let selectedIconId = null;
 
 // elementos do DOM
 const modulesGrid = document.getElementById("modulesGrid");
@@ -54,10 +56,16 @@ function renderModules() {
         return;
     }
 
-    modulesGrid.innerHTML = modules.map(module => `
+    modulesGrid.innerHTML = modules.map(module => {
+        const iconEmoji = getIconById(module.icon);
+        
+        return `
         <div class="moduleCard" data-id="${module.id}">
             <div class="moduleCardHeader">
-                <h3 class="moduleCardTitle">${module.title}</h3>
+                <div class="moduleCardTitleRow">
+                    <span class="moduleCardIcon">${iconEmoji}</span>
+                    <h3 class="moduleCardTitle">${module.title}</h3>
+                </div>
                 <div class="moduleActions">
                     <button class="btnIcon btnEdit" data-id="${module.id}" title="Editar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -79,7 +87,8 @@ function renderModules() {
                 Ver Desafios →
             </button>
         </div>
-    `).join("");
+        `;
+    }).join("");
 
     // adicionar event listeners aos botões
     document.querySelectorAll(".btnEdit").forEach(btn => {
@@ -114,11 +123,48 @@ function setupEventListeners() {
     btnConfirmDelete.addEventListener("click", handleDelete);
 }
 
+// renderizar grid de ícones
+function renderIconGrid() {
+    const iconGrid = document.getElementById("iconGrid");
+    iconGrid.innerHTML = MODULE_ICONS.map(icon => `
+        <div class="iconOption" data-icon-id="${icon.id}" title="${icon.name}">
+            <span class="iconEmoji">${icon.emoji}</span>
+        </div>
+    `).join("");
+
+    // adicionar event listeners
+    document.querySelectorAll(".iconOption").forEach(option => {
+        option.addEventListener("click", () => {
+            const iconId = parseInt(option.getAttribute("data-icon-id"));
+            selectIcon(iconId);
+        });
+    });
+}
+
+// selecionar ícone
+function selectIcon(iconId) {
+    selectedIconId = iconId;
+    document.getElementById("moduleIcon").value = iconId;
+    
+    // remover seleção anterior
+    document.querySelectorAll(".iconOption").forEach(opt => {
+        opt.classList.remove("selected");
+    });
+    
+    // adicionar seleção atual
+    const selectedOption = document.querySelector(`[data-icon-id="${iconId}"]`);
+    if (selectedOption) {
+        selectedOption.classList.add("selected");
+    }
+}
+
 // abrir formulário de novo módulo
 function openNewForm() {
     currentEditingId = null;
+    selectedIconId = null;
     formTitle.textContent = "Novo Módulo";
     moduleForm.reset();
+    renderIconGrid();
     moduleFormContainer.classList.remove("hidden");
     document.getElementById("moduleTitle").focus();
 }
@@ -131,6 +177,10 @@ function openEditForm(id) {
     currentEditingId = id;
     formTitle.textContent = "Editar Módulo";
     document.getElementById("moduleTitle").value = module.title;
+    renderIconGrid();
+    if (module.icon !== undefined && module.icon !== null) {
+        selectIcon(module.icon);
+    }
     moduleFormContainer.classList.remove("hidden");
     document.getElementById("moduleTitle").focus();
 }
@@ -147,20 +197,31 @@ async function handleSubmit(e) {
     e.preventDefault();
     
     const title = document.getElementById("moduleTitle").value.trim();
+    const iconId = document.getElementById("moduleIcon").value;
     
     if (!title) {
         showMessage("Por favor, preencha o título do módulo", "error");
         return;
     }
 
+    if (!iconId && iconId !== 0) {
+        showMessage("Por favor, selecione um ícone", "error");
+        return;
+    }
+
+    const moduleData = {
+        title,
+        icon: parseInt(iconId)
+    };
+
     try {
         if (currentEditingId) {
             // atualizar módulo existente
-            await updateModule(currentEditingId, { title });
+            await updateModule(currentEditingId, moduleData);
             showMessage("Módulo atualizado com sucesso!", "success");
         } else {
             // criar novo módulo
-            await createModule({ title });
+            await createModule(moduleData);
             showMessage("Módulo criado com sucesso!", "success");
         }
         
