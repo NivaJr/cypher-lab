@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Desafios - CypherLab Admin</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/components/headerAdmin.css">
+    <link rel="stylesheet" href="../../assets/css/pages/challengeAdmin.css">
+</head>
+<body>
+    <div id="headerAdminComponent"></div>
+
+    <main>
+        <div class="adminHeader">
+            <div class="headerLeft">
+                <button class="btnBack" id="btnBack">← Voltar</button>
+                <div>
+                    <h1>Gerenciar Desafios</h1>
+                    <p class="moduleName" id="moduleName">Carregando...</p>
+                </div>
+            </div>
+            <button class="btnPrimary" id="btnNewChallenge">+ Novo Desafio</button>
+        </div>
+
+        <!-- mensagem de feedback -->
+        <div id="messageBox" class="messageBox hidden"></div>
+
+        <!-- formulário de criação/edição -->
+        <div id="challengeFormContainer" class="formContainer hidden">
+            <div class="formCard">
+                <div class="formHeader">
+                    <h2 id="formTitle">Novo Desafio</h2>
+                    <button class="btnClose" id="btnCloseForm">✕</button>
+                </div>
+                <form id="challengeForm">
+                    <div class="formGroup">
+                        <label for="challengeTitle">Título do Desafio *</label>
+                        <input 
+                            type="text" 
+                            id="challengeTitle" 
+                            name="title" 
+                            placeholder="Ex: Decodificação Caesar Cipher" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="formGroup">
+                        <label for="challengeDescription">Descrição *</label>
+                        <textarea 
+                            id="challengeDescription" 
+                            name="description" 
+                            placeholder="Descreva o desafio em detalhes..." 
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="challengeDifficulty">Dificuldade *</label>
+                        <select 
+                            id="challengeDifficulty" 
+                            name="difficulty" 
+                            required
+                        >
+                            <option value="">Selecione a dificuldade</option>
+                            <option value="EASY">Fácil</option>
+                            <option value="MEDIUM">Médio</option>
+                            <option value="HARD">Difícil</option>
+                        </select>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="challengeSolutionHash">Hash da Solução *</label>
+                        <input 
+                            type="text" 
+                            id="challengeSolutionHash" 
+                            name="solutionHash" 
+                            placeholder="Ex: a1b2c3d4e5f6..." 
+                            required
+                        >
+                        <small class="formHint">Hash SHA-256 da solução correta</small>
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="challengeReward">Recompensa (Pontos) *</label>
+                        <input 
+                            type="number" 
+                            id="challengeReward" 
+                            name="reward" 
+                            placeholder="100" 
+                            min="1" 
+                            required
+                        >
+                    </div>
+
+                    <div class="formActions">
+                        <button type="button" class="btnSecondary" id="btnCancelForm">Cancelar</button>
+                        <button type="submit" class="btnPrimary" id="btnSubmitForm">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- lista de desafios -->
+        <section class="challengesSection">
+            <div class="challengesGrid" id="challengesGrid">
+                <!-- desafios carregados dinamicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- modal de confirmação -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modalContent">
+            <h3>Confirmar Exclusão</h3>
+            <p>Tem certeza que deseja excluir este desafio? Esta ação não pode ser desfeita.</p>
+            <div class="modalActions">
+                <button class="btnSecondary" id="btnCancelDelete">Cancelar</button>
+                <button class="btnDanger" id="btnConfirmDelete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/components/headerAdmin.js"></script>
+    <script src="../../assets/js/script.js" type="module"></script>
+    <script src="../../assets/js/pages/challengeAdmin.js" type="module"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import { fetchAllChallenges } from "../services/challengeService.js";
 import { fetchUserProgress, fetchUserSolvedProgress, fetchUserRank, fetchAllModulesProgress, fetchUserStreak } from "../services/progressService.js";
+import { MODULE_ICONS, getIconById } from "../constants/moduleIcons.js";
+
 
 // modulos estaticos
 
@@ -113,11 +115,13 @@ function renderModules() {
 
 
         const button = getButtonConfig(module.status);
+        const iconEmoji = getIconById(module.icon);
         
+
         modulesContainer.innerHTML += `
             <div class="moduleCard">
                 <div class="moduleHeader">
-                    <span class="moduleIcon">${module.icon}</span>
+                    <span class="moduleIcon">${iconEmoji}</span>
                     <span class="moduleStatus ${module.status}">${getStatusText(module.status)}</span>
                 </div>
                 <h3 class="moduleTitle">${module.moduleTitle}</h3>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Módulos - CypherLab Admin</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/components/headerAdmin.css">
+    <link rel="stylesheet" href="../../assets/css/pages/challengeModuleAdmin.css">
+</head>
+<body>
+    <div id="headerAdminComponent"></div>
+
+    <main>
+        <div class="adminHeader">
+            <h1>Gerenciar Módulos de Desafios</h1>
+            <button class="btnPrimary" id="btnNewModule">+ Novo Módulo</button>
+        </div>
+
+        <!-- mensagem de feedback -->
+        <div id="messageBox" class="messageBox hidden"></div>
+
+        <!-- formulário de criação/edição -->
+        <div id="moduleFormContainer" class="formContainer hidden">
+            <div class="formCard">
+                <div class="formHeader">
+                    <h2 id="formTitle">Novo Módulo</h2>
+                    <button class="btnClose" id="btnCloseForm">✕</button>
+                </div>
+                <form id="moduleForm">
+                    <div class="formGroup">
+                        <label for="moduleTitle">Título do Módulo *</label>
+                        <input 
+                            type="text" 
+                            id="moduleTitle" 
+                            name="title" 
+                            placeholder="Ex: Criptografia Básica" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="formGroup">
+                        <label for="moduleIcon">Ícone do Módulo *</label>
+                        <div class="iconGrid" id="iconGrid">
+                            <!-- ícones serão gerados dinamicamente -->
+                        </div>
+                        <input type="hidden" id="moduleIcon" name="icon" required>
+                    </div>
+
+                    <div class="formActions">
+                        <button type="button" class="btnSecondary" id="btnCancelForm">Cancelar</button>
+                        <button type="submit" class="btnPrimary" id="btnSubmitForm">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- lista de módulos -->
+        <section class="modulesSection">
+            <div class="modulesGrid" id="modulesGrid">
+                <!-- módulos carregados dinamicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- modal de confirmação -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modalContent">
+            <h3>Confirmar Exclusão</h3>
+            <p>Tem certeza que deseja excluir este módulo? Esta ação não pode ser desfeita.</p>
+            <div class="modalActions">
+                <button class="btnSecondary" id="btnCancelDelete">Cancelar</button>
+                <button class="btnDanger" id="btnConfirmDelete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/components/headerAdmin.js"></script>
+    <script src="../../assets/js/script.js" type="module"></script>
+    <script src="../../assets/js/pages/challengeModuleAdmin.js" type="module"></script>
+</body>
+</html>

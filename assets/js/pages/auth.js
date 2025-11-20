@@ -127,12 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem("authToken", data.token);
                 
                 localStorage.setItem("userData", JSON.stringify({
-                    username: data.username,
                     email: data.email,
-                    id: data.userId
+                    id: data.userId,
+                    role: data.role
                 }));
 
-                window.location.href = "../dashboard.html";
+                if (data.role === 'ADMIN') {
+                    window.location.href = "../admin/challengeModuleAdmin.html";
+                }else{
+                    window.location.href = "../dashboard.html";
+                }
             })
             .catch(error => {
                 console.error("Erro no login:", error);

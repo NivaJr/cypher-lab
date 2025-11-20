@@ -1,0 +1,450 @@
+main {
+    padding: 2rem;
+    background-color: #0F0F23;
+    min-height: 100vh;
+}
+
+.adminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.adminHeader h1 {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* Botões */
+.btnPrimary {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+.btnSecondary {
+    background-color: #2D2D5F;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnSecondary:hover {
+    background-color: #3D3D7F;
+}
+
+.btnDanger {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnDanger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btnIcon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnIcon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btnEdit svg {
+    color: #10B981;
+}
+
+.btnDelete svg {
+    color: #EF4444;
+}
+
+.btnClose {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+/* Mensagem de feedback */
+.messageBox {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+.messageBox.success {
+    background-color: #10B981;
+    color: white;
+}
+
+.messageBox.error {
+    background-color: #EF4444;
+    color: white;
+}
+
+.messageBox.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Formulário */
+.formContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.formContainer.hidden {
+    display: none;
+}
+
+.formCard {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    animation: scaleIn 0.2s ease;
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.formHeader h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2D2D5F;
+    border: 1px solid #3D3D7F;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #7C3AED;
+}
+
+.formGroup textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.formActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Grid de ícones */
+.iconGrid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.iconOption {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2D2D5F;
+    border: 2px solid #3D3D7F;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.iconOption:hover {
+    background-color: #3D3D7F;
+    border-color: #7C3AED;
+    transform: scale(1.1);
+}
+
+.iconOption.selected {
+    background-color: #7C3AED;
+    border-color: #7C3AED;
+    transform: scale(1.1);
+}
+
+.iconEmoji {
+    font-size: 1.5rem;
+}
+
+/* Grid de módulos */
+.modulesSection {
+    margin-top: 2rem;
+}
+
+.modulesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.moduleCard {
+    background-color: #1A1A3A;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.moduleCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.2);
+}
+
+.moduleCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.moduleCardTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.moduleCardIcon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.moduleCardTitle {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    flex: 1;
+}
+
+.moduleActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.moduleCardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.moduleId {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+.btnViewChallenges {
+    width: 100%;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btnViewChallenges:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Estado vazio */
+.emptyState {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #9CA3AF;
+}
+
+.emptyIcon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.emptyState p {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.emptySubtext {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modalContent {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    animation: scaleIn 0.2s ease;
+}
+
+.modalContent h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modalContent p {
+    color: #9CA3AF;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .adminHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .adminHeader h1 {
+        font-size: 1.5rem;
+    }
+
+    .modulesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formCard {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+}

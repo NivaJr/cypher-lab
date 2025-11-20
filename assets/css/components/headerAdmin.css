@@ -1,0 +1,79 @@
+.adminHeaderBar {
+    background: linear-gradient(135deg, #1A1A3A 0%, #2D2D5F 100%);
+    border-bottom: 2px solid #7C3AED;
+    padding: 0;
+}
+
+.adminHeaderBar nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 100%;
+}
+
+.adminHeaderBar .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.adminHeaderBar .logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.adminHeaderBar .logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.adminBadge {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.adminHeaderBar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.adminHeaderBar .user-info span {
+    color: white;
+    font-weight: 500;
+}
+
+.adminHeaderBar .btnLogout {
+    background-color: transparent;
+    border: 1px solid #EF4444;
+    color: #EF4444;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.adminHeaderBar .btnLogout:hover {
+    background-color: #EF4444;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .adminHeaderBar nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .adminHeaderBar .user-info {
+        width: 100%;
+        justify-content: center;
+    }
+}

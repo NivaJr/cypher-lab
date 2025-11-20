@@ -1,0 +1,487 @@
+main {
+    padding: 2rem;
+    background-color: #0F0F23;
+    min-height: 100vh;
+}
+
+.adminHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.adminHeader h1 {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.moduleName {
+    font-size: 1rem;
+    color: #10B981;
+    font-weight: 500;
+}
+
+/* Botão voltar */
+.btnBack {
+    background-color: #2D2D5F;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btnBack:hover {
+    background-color: #3D3D7F;
+}
+
+/* Botões */
+.btnPrimary {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+}
+
+.btnSecondary {
+    background-color: #2D2D5F;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnSecondary:hover {
+    background-color: #3D3D7F;
+}
+
+.btnDanger {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnDanger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btnIcon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnIcon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btnEdit svg {
+    color: #10B981;
+}
+
+.btnDelete svg {
+    color: #EF4444;
+}
+
+.btnClose {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+/* Mensagem de feedback */
+.messageBox {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+.messageBox.success {
+    background-color: #10B981;
+    color: white;
+}
+
+.messageBox.error {
+    background-color: #EF4444;
+    color: white;
+}
+
+.messageBox.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Formulário */
+.formContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.formContainer.hidden {
+    display: none;
+}
+
+.formCard {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    animation: scaleIn 0.2s ease;
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.formHeader h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2D2D5F;
+    border: 1px solid #3D3D7F;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: #7C3AED;
+}
+
+.formGroup textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.formGroup select {
+    cursor: pointer;
+}
+
+.formGroup select option {
+    background-color: #2D2D5F;
+    color: white;
+}
+
+.formHint {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #9CA3AF;
+}
+
+.formActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Grid de desafios */
+.challengesSection {
+    margin-top: 2rem;
+}
+
+.challengesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.challengeCard {
+    background-color: #1A1A3A;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.challengeCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.2);
+}
+
+.challengeCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.challengeCardTitle {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.challengeActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.challengeCardBody {
+    margin-bottom: 1rem;
+}
+
+.challengeDescription {
+    color: #D1D5DB;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.challengeCardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.challengeInfoRow {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.challengeBadge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.challengeBadge.difficulty {
+    color: white;
+}
+
+.challengeBadge.difficulty.easy {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.challengeBadge.difficulty.medium {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.challengeBadge.difficulty.hard {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}
+
+.challengeBadge.reward {
+    background-color: #2D2D5F;
+    color: #FCD34D;
+}
+
+.challengeId {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+/* Estado vazio */
+.emptyState {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #9CA3AF;
+}
+
+.emptyIcon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.emptyState p {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.emptySubtext {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modalContent {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    animation: scaleIn 0.2s ease;
+}
+
+.modalContent h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modalContent p {
+    color: #9CA3AF;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .adminHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .headerLeft {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .adminHeader h1 {
+        font-size: 1.5rem;
+    }
+
+    .challengesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formCard {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+}
