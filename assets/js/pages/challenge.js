@@ -4,6 +4,8 @@ import { fetchChallenge } from "../services/challengeService.js"
 
 const params = new URLSearchParams(window.location.search);
 const challengeId = parseInt(params.get('challengeId') || '1', 10);
+const userId = JSON.parse(localStorage.getItem("userData")).id;
+
     
     
     const challengeContent = document.querySelector('.challenge-content');
@@ -41,20 +43,20 @@ const challengeId = parseInt(params.get('challengeId') || '1', 10);
             const userAnswer = input.value.trim()
             console.log(userAnswer)
             
-            const res = await fetch(`${API_URL}/challenges/${challengeId}/submit`, {
+            const res = await fetch(`${API_URL}/user/${userId}/challenges/${challengeId}/submit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ans: userAnswer
+                    answer: userAnswer
                 })
-            } )
+            });
             
             
             const data = await res.json();
             feedback.innerText = data.message;
-            feedback.style.color = data.correct ? 'green' : 'red';
+            feedback.style.color = data.isCorrect ? 'green' : 'red';
             
                });
         })
