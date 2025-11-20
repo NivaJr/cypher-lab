@@ -4,34 +4,86 @@
 
   const STORAGE_KEY = 'cypher_user';
 
-  const SAMPLE_USER = {
-    name: 'Joana Doe',
-    handle: '@joanadoe',
-    bio: 'Cybersecurity enthusiast and penetration tester. Passionate about ethical hacking and digital forensics.',
-    email: 'joana.doe@email.com',
-    avatar: 'https://placehold.co/96x96/e0e7ff/312e81?text=JD',
-    memberSince: '15 de Janeiro, 2023',
-    stats: {
-      score: 2847,
-      challenges: 45,
-      rank: '#47',
-      today: '+121 pontos hoje',
-      progress: '57% de progresso',
-      top: 'Top 5% global'
-    },
-    achievements: [
-      { title: 'Cryptography Novice', desc: 'Completed the Basic Cryptography module.' },
-      { title: 'Web Apprentice', desc: 'Completed 10 Web Application Security challenges.' },
-      { title: 'First Blood', desc: 'Successfully completed your first challenge.' },
-      { title: 'Script Kiddie', desc: 'Solved a challenge using a custom script.' }
-    ],
-    activity: [
-      { title: 'Desafio: Cifra de César', category: 'Criptografia Básica', points: '+50 pts', time: '2 horas atrás' },
-      { title: 'Vulnerabilidade de Injeção de SQL', category: 'Web Application Security', points: '+75 pts', time: '1 dia atrás' },
-      { title: 'Análise de Malware Simples', category: 'Malware Analysis', points: '+100 pts', time: '2 dias atrás' },
-      { title: 'Scanning de Rede com Nmap', category: 'Network Security', points: '+60 pts', time: '2 dias atrás' }
-    ]
-  };
+  async function fetchRemoteUser() {
+    try {
+      const response = await fetch('/api/user', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
+      return null;
+    }
+  }
+
+  function readLocalUser() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      console.error('Failed to read local user data:', error);
+      return null;
+    }
+  }
+
+  function saveLocalUser(user) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+    } catch (error) {
+      console.error('Failed to save user data to local storage:', error);
+    }
+  }
+
+  function populateProfile(user) {
+    const nameEl = document.querySelector('.profile-name');
+    const handleEl = document.querySelector('.profile-handle');
+    const bioEl = document.querySelector('.profile-bio');
+    const avatarEl = document.querySelector('.avatar-img');
+    const emailEl = document.getElementById('email-text');
+    const memberSinceEl = document.querySelector('.member-since span');
+
+    if (nameEl) nameEl.textContent = user.name || '';
+    if (handleEl) handleEl.textContent = user.handle || '';
+    if (bioEl) bioEl.textContent = user.bio || '';
+    if (emailEl) emailEl.textContent = user.email || '';
+    if (memberSinceEl) memberSinceEl.textContent = user.memberSince || '';
+
+    if (avatarEl) {
+      avatarEl.src = user.avatar || buildAvatarUrlFromInitials(initialsFromName(user.name));
+      avatarEl.alt = `Avatar de ${user.name || 'Usuário'}`;
+    }
+  }
+
+  function initialsFromName(name = '') {
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    return parts.length === 0 ? 'U' : (parts.length === 1 ? parts[0].slice(0, 2).toUpperCase() : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase());
+  }
+
+  function buildAvatarUrlFromInitials(initials) {
+    return `https://placehold.co/96x96/111827/ffffff?text=${encodeURIComponent(initials)}`;
+  }
+
+  async function init() {
+    let user = readLocalUser();
+
+    if (!user) {
+      user = await fetchRemoteUser();
+    }
+
+    if (!user) {
+      console.warn('No user data available, using default values.');
+      user = {
+        name: 'Default User',
+        handle: '@defaultuser',
+        bio: 'This is a default user profile.',
+        email: 'default.user@example.com',
+        avatar: buildAvatarUrlFromInitials('DU'),
+        memberSince: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+      };
+    }
+
+    populateProfile(user);
+    saveLocalUser(user);
+  }
 
   const $ = (s, ctx = document) => ctx.querySelector(s);
   const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
