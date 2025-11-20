@@ -8,6 +8,23 @@ export async function fetchUserProgress(userId) {
     }
     return res.json()
 }
+export async function fetchUserChallenges(userId) {
+    const url = API_URL + `/user/${userId}/challenges`;
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error('Erro ao buscar desafios do usuário', res.status);
+    }
+    return res.json()
+}
+
+export async function fetchUserChallengesByModule(userId, moduleId) {
+    const url = API_URL + `/user/${userId}/modules/${moduleId}/challenges`;
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw new Error('Erro ao buscar desafios do usuário', res.status);
+    }
+    return res.json()
+}
 
 export async function fetchUserSolvedProgress(userId) {
     const url = API_URL + `/user/${userId}/solved`;
