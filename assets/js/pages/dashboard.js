@@ -4,6 +4,7 @@ import { fetchUserProgress, fetchUserSolvedProgress, fetchUserRank, fetchAllModu
 // modulos estaticos
 
 let idUser = JSON.parse(localStorage.getItem("userData")).id;
+console.log(localStorage.getItem("userData"))
 
 // let idUser = 2; // substituir pela lógica de autenticação real
 
