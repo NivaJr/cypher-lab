@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch(`${authUrl}/register`, opcoes)
                 .then(response => {
+                    console.log(opcoes);
                     if (response.ok) {
                         return response.text();
                     } else {
@@ -174,4 +175,67 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+});
+
+document.querySelector('#login-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const email = e.target.email.value.trim();
+  const senha = e.target.senha.value;
+  const rememberMe = !!document.getElementById('remember-me')?.checked;
+
+  if (!email || !senha) {
+    alert('Preencha email e senha');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${authUrl}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // se usar cookie-based auth
+      body: JSON.stringify({ email, senha })
+    });
+
+    if (!res.ok) {
+      // tenta extrair mensagem do backend
+      const errText = await res.text();
+      throw new Error(errText || `Erro ${res.status}`);
+    }
+
+    const data = await res.json();
+    // espera algo como: { token, username, email, userId, avatar?, stats?, achievements?, activity? }
+
+    // armazena token e metadados
+    if (data.token) localStorage.setItem('authToken', data.token);
+    localStorage.setItem('userData', JSON.stringify({
+      username: data.username || data.name,
+      email: data.email,
+      id: data.userId || data.id
+    }));
+
+    // cria objeto usado pela user.html (cypher_user)
+    const name = data.username || data.name || (email.split('@')[0]);
+    const cypherUser = {
+      name,
+      handle: data.handle || ('@' + name.replace(/\s+/g, '').toLowerCase()),
+      email: data.email || email,
+      avatar: data.avatar || `https://placehold.co/96x96/111827/ffffff?text=${encodeURIComponent(name.slice(0,2))}`,
+      memberSince: data.memberSince || new Date().toLocaleDateString('pt-BR'),
+      stats: data.stats || {},
+      achievements: data.achievements || [],
+      activity: data.activity || []
+    };
+    localStorage.setItem('cypher_user', JSON.stringify(cypherUser));
+
+    // lembrar email se checkbox marcada
+    if (rememberMe) localStorage.setItem('rememberedEmail', email);
+    else localStorage.removeItem('rememberedEmail');
+
+    // redireciona (ajuste caminho conforme necessário)
+    window.location.href = '../dashboard.html';
+  } catch (err) {
+    console.error('Erro no login:', err);
+    alert('Falha no login: ' + (err.message || err));
+  }
 });
