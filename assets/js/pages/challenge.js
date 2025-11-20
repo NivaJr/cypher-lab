@@ -34,6 +34,9 @@ const userId = JSON.parse(localStorage.getItem("userData")).id;
         const feedback = document.getElementById('submitFeedback')
         
         const loader = document.querySelector('.loading')
+        const modal = document.getElementById("modalCorrect");
+        const modalClose = document.getElementById("closeModal")
+        const continueBtn = document.getElementById("continueButton")
         if(loader) loader.remove();
         challengeContent.classList.add('loaded');
         
@@ -57,7 +60,14 @@ const userId = JSON.parse(localStorage.getItem("userData")).id;
             const data = await res.json();
             feedback.innerText = data.message;
             feedback.style.color = data.isCorrect ? 'green' : 'red';
-            
+modal.style.display = data.isCorrect ? "flex" : "none";
+        modalClose.addEventListener('click', () => {
+            modal.style.display = "none";
+        })
+
+        continueBtn.addEventListener('click', () => {
+            window.location.href = "../../pages/dashboard.html";
+        })
                });
         })
         .catch( error => {
