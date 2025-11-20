@@ -4,99 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - CypherLab</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="assets/css/pages/user.css">
 
-    <style type="text/tailwindcss">
-        .bg-card {
-            background-color: #1E293B;
-        }
-        .bg-card-inner {
-            background-color: #334155;
-        }
-        .bg-page {
-            background-color: #0F172A;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/pages/user.css">
 </head>
 
-<body class="bg-page text-gray-200 antialiased">
+<body class="page">
 
-    <div id="message-box" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg hidden z-50 transition-all duration-300">
+    <div id="message-box" class="message hidden">
         Mensagem de exemplo
     </div>
 
-    <nav class="bg-card w-full shadow-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <svg class="h-8 w-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+    <nav class="nav">
+        <div class="container nav-inner">
+            <div class="nav-left">
+                <div class="brand">
+                    <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.751A11.959 11.959 0 0 1 12 2.714Z" />
                     </svg>
-                    <span class="ml-2 text-xl font-bold text-white">CypherLab</span>
+                    <span class="brand-name">CypherLab</span>
                 </div>
-                
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Desafios</a>
-                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Ranking</a>
-                        <a href="#" class="text-white bg-slate-700 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Perfil</a>
-                    </div>
+            </div>
+
+            <div class="nav-center">
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Dashboard</a>
+                    <a href="#" class="nav-link">Desafios</a>
+                    <a href="#" class="nav-link">Ranking</a>
+                    <a href="#" class="nav-link active">Perfil</a>
                 </div>
-                
-                <div class="ml-4 flex items-center md:ml-6">
-                    <div class="flex-shrink-0">
-                        <button class="flex items-center justify-center h-8 w-8 rounded-full bg-indigo-600 text-white text-sm font-semibold">
-                            JD
-                        </button>
-                    </div>
-                </div>
+            </div>
+
+            <div class="nav-right">
+                <button class="avatar-btn">JD</button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            
-            <aside class="lg:col-span-1">
-                <div class="bg-card shadow-lg rounded-xl p-6">
-                    <div class="flex flex-col items-center">
-                        <img class="h-24 w-24 rounded-full border-4 border-slate-600" 
+    <main class="container main-content">
+        <div class="layout-grid">
+
+            <aside class="sidebar">
+                <div class="card profile-card">
+                    <div class="profile-inner">
+                        <img class="avatar-img" 
                              src="https://placehold.co/96x96/e0e7ff/312e81?text=JDoe" 
                              alt="Foto de Perfil de Joana Doe"
                              onerror="this.src='https://placehold.co/96x96/334155/ffffff?text=Erro'">
-                        
-                        <h2 class="mt-4 text-2xl font-bold text-white">Joana Doe</h2>
-                        <p class="text-sm text-indigo-400">@joanadoe</p>
-                        
-                        <p class="mt-4 text-gray-400 text-sm text-center">
+
+                        <h2 class="profile-name">Joana Doe</h2>
+                        <p class="profile-handle">@joanadoe</p>
+
+                        <p class="profile-bio">
                             Cybersecurity enthusiast and penetration tester. Passionate about ethical hacking and digital forensics.
                         </p>
-                        
-                        <div class="mt-6 w-full text-left space-y-3">
-                            <div id="email-btn" title="Copiar email" class="flex items-center text-gray-400 text-sm cursor-pointer group">
-                                <svg class="h-5 w-5 mr-3 text-slate-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                        <div class="profile-info">
+                            <div id="email-btn" title="Copiar email" class="copy-email">
+                                <svg class="icon mail-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                                 </svg>
                                 <span id="email-text">joana.doe@email.com</span>
                             </div>
-                            <div class="flex items-center text-gray-400 text-sm">
-                                <svg class="h-5 w-5 mr-3 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <div class="member-since">
+                                <svg class="icon calendar-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                 </svg>
                                 <span>Membro desde 15 de Janeiro, 2023</span>
                             </div>
                         </div>
-                        
-                        <button id="edit-profile-btn" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 transition-colors">
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                        <button id="edit-profile-btn" class="btn primary-btn">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
                             <span>Editar Perfil</span>
@@ -104,182 +86,172 @@
                     </div>
                 </div>
             </aside>
-            
-            <section class="lg:col-span-3 space-y-8">
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-indigo-600 text-white p-6 rounded-xl shadow-lg flex items-start space-x-4">
-                        <div class="flex-shrink-0 bg-indigo-700 p-3 rounded-lg">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+            <section class="content">
+                <div class="stats-grid">
+                    <div class="stat stat-indigo">
+                        <div class="stat-icon">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-6.75c-.621 0-1.125.504-1.125 1.125V18.75m9 0h-9" />
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-indigo-200">Pontuação Total</p>
-                            <p class="text-3xl font-bold">2847</p>
-                            <p class="text-xs text-indigo-200 mt-1">+121 pontos hoje</p>
+                            <p class="muted">Pontuação Total</p>
+                            <p class="big">2847</p>
+                            <p class="tiny muted">+121 pontos hoje</p>
                         </div>
                     </div>
-                    
-                    <div class="bg-green-600 text-white p-6 rounded-xl shadow-lg flex items-start space-x-4">
-                        <div class="flex-shrink-0 bg-green-700 p-3 rounded-lg">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                    <div class="stat stat-green">
+                        <div class="stat-icon">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-green-200">Desafios Concluídos</p>
-                            <p class="text-3xl font-bold">45</p>
-                            <p class="text-xs text-green-200 mt-1">57% de progresso</p>
+                            <p class="muted">Desafios Concluídos</p>
+                            <p class="big">45</p>
+                            <p class="tiny muted">57% de progresso</p>
                         </div>
                     </div>
-                    
-                    <div class="bg-orange-500 text-white p-6 rounded-xl shadow-lg flex items-start space-x-4">
-                        <div class="flex-shrink-0 bg-orange-600 p-3 rounded-lg">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                    <div class="stat stat-orange">
+                        <div class="stat-icon">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm text-orange-200">Ranking Global</p>
-                            <p class="text-3xl font-bold">#47</p>
-                            <p class="text-xs text-orange-200 mt-1">Top 5% global</p>
+                            <p class="muted">Ranking Global</p>
+                            <p class="big">#47</p>
+                            <p class="tiny muted">Top 5% global</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-card shadow-lg rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-white mb-4">Conquistas</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-card-inner p-4 rounded-lg flex items-center space-x-4">
-                            <div class="flex-shrink-0 bg-slate-600 p-3 rounded-full">
-                                <svg class="h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                <div class="card">
+                    <h3 class="card-title">Conquistas</h3>
+                    <div class="achievements">
+                        <div class="achievement">
+                            <div class="ach-icon bg-slate">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-white">Cryptography Novice</p>
-                                <p class="text-sm text-gray-400">Completed the Basic Cryptography module.</p>
+                                <p class="strong">Cryptography Novice</p>
+                                <p class="muted small">Completed the Basic Cryptography module.</p>
                             </div>
                         </div>
-                        <div class="bg-card-inner p-4 rounded-lg flex items-center space-x-4">
-                            <div class="flex-shrink-0 bg-slate-600 p-3 rounded-full">
-                                <svg class="h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                        <div class="achievement">
+                            <div class="ach-icon bg-slate">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5 0-4.5 16.5" />
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-white">Web Apprentice</p>
-                                <p class="text-sm text-gray-400">Completed 10 Web Application Security challenges.</p>
+                                <p class="strong">Web Apprentice</p>
+                                <p class="muted small">Completed 10 Web Application Security challenges.</p>
                             </div>
                         </div>
-                        <div class="bg-card-inner p-4 rounded-lg flex items-center space-x-4">
-                            <div class="flex-shrink-0 bg-slate-600 p-3 rounded-full">
-                                <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                        <div class="achievement">
+                            <div class="ach-icon bg-slate">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.364 5.121a3 3 0 0 1 0 4.242l-4.242 4.243a3 3 0 0 1-4.242-4.243l4.242-4.242a3 3 0 0 1 4.242 0Z" />
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-white">First Blood</p>
-                                <p class="text-sm text-gray-400">Successfully completed your first challenge.</p>
+                                <p class="strong">First Blood</p>
+                                <p class="muted small">Successfully completed your first challenge.</p>
                             </div>
                         </div>
-                        <div class="bg-card-inner p-4 rounded-lg flex items-center space-x-4">
-                            <div class="flex-shrink-0 bg-slate-600 p-3 rounded-full">
-                                <svg class="h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+
+                        <div class="achievement">
+                            <div class="ach-icon bg-slate">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-white">Script Kiddie</p>
-                                <p class="text-sm text-gray-400">Solved a challenge using a custom script.</p>
+                                <p class="strong">Script Kiddie</p>
+                                <p class="muted small">Solved a challenge using a custom script.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-card shadow-lg rounded-xl p-6">
-                    <h3 class="text-xl font-semibold text-white mb-4">Atividade Recente</h3>
-                    <div class="flow-root">
-                        <ul role="list" class="divide-y divide-slate-700">
-                            <li class="py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-md font-medium text-white truncate">
-                                            Desafio: Cifra de César
-                                        </p>
-                                        <p class="text-sm text-gray-400 truncate">
-                                            Criptografia Básica
-                                        </p>
+
+                <div class="card">
+                    <h3 class="card-title">Atividade Recente</h3>
+                    <div class="activity">
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="activity-row">
+                                    <div class="activity-main">
+                                        <p class="activity-title">Desafio: Cifra de César</p>
+                                        <p class="muted small">Criptografia Básica</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-md font-semibold text-green-400">+50 pts</p>
-                                        <p class="text-sm text-gray-500">2 horas atrás</p>
+                                    <div class="activity-meta">
+                                        <p class="activity-points plus">+50 pts</p>
+                                        <p class="muted small">2 horas atrás</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-md font-medium text-white truncate">
-                                            Vulnerabilidade de Injeção de SQL
-                                        </p>
-                                        <p class="text-sm text-gray-400 truncate">
-                                            Web Application Security
-                                        </p>
+
+                            <li class="activity-item">
+                                <div class="activity-row">
+                                    <div class="activity-main">
+                                        <p class="activity-title">Vulnerabilidade de Injeção de SQL</p>
+                                        <p class="muted small">Web Application Security</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-md font-semibold text-green-400">+75 pts</p>
-                                        <p class="text-sm text-gray-500">1 dia atrás</p>
+                                    <div class="activity-meta">
+                                        <p class="activity-points plus">+75 pts</p>
+                                        <p class="muted small">1 dia atrás</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-md font-medium text-white truncate">
-                                            Análise de Malware Simples
-                                        </p>
-                                        <p class="text-sm text-gray-400 truncate">
-                                            Malware Analysis
-                                        </p>
+
+                            <li class="activity-item">
+                                <div class="activity-row">
+                                    <div class="activity-main">
+                                        <p class="activity-title">Análise de Malware Simples</p>
+                                        <p class="muted small">Malware Analysis</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-md font-semibold text-green-400">+100 pts</p>
-                                        <p class="text-sm text-gray-500">2 dias atrás</p>
+                                    <div class="activity-meta">
+                                        <p class="activity-points plus">+100 pts</p>
+                                        <p class="muted small">2 dias atrás</p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-md font-medium text-white truncate">
-                                            Scanning de Rede com Nmap
-                                        </p>
-                                        <p class="text-sm text-gray-400 truncate">
-                                            Network Security
-                                        </p>
+
+                            <li class="activity-item">
+                                <div class="activity-row">
+                                    <div class="activity-main">
+                                        <p class="activity-title">Scanning de Rede com Nmap</p>
+                                        <p class="muted small">Network Security</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-md font-semibold text-green-400">+60 pts</p>
-                                        <p class="text-sm text-gray-500">2 dias atrás</p>
+                                    <div class="activity-meta">
+                                        <p class="activity-points plus">+60 pts</p>
+                                        <p class="muted small">2 dias atrás</p>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                
+
             </section>
+
         </div>
     </main>
 
-    <footer class="text-center text-gray-500 text-xs py-8 mt-8 border-t border-slate-700">
-        © 2024 CypherLab. Todos os direitos reservados.
+    <footer class="site-footer">
+        © 2025 CypherLab. Todos os direitos reservados.
     </footer>
 
-    <script src="assets/js/pages/user.js" defer></script>
-
+    <script src="../assets/js/pages/user.js" defer></script>
 </body>
 </html>
+// ...existing code...
