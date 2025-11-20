@@ -134,7 +134,7 @@ function renderModules() {
                 <button 
                     class="moduleButton ${button.class}" 
                     ${button.disabled ? 'disabled' : ''}
-                    onclick="window.location.href='challengesList.html?module=${module.moduleId}'"
+                    onclick="window.location.href='challengesList.html?moduleId=${module.moduleId}'"
                 >
                     ${button.text}
                 </button>
