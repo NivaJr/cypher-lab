@@ -1,21 +1,22 @@
 import { fetchAllChallenges, fetchChallenge, fetchChallengesByModule } from "../services/challengeService.js";
+import { fetchUserChallenges, fetchUserChallengesByModule } from "../services/progressService.js";
 
 const challengesList = document.getElementById("listContainer");
 
 const params = new URLSearchParams(window.location.search);
 const moduleId = parseInt(params.get('moduleId'))
+const userId = JSON.parse(localStorage.getItem("userData")).id;
 
-    const fetchPromise = moduleId ? fetchChallengesByModule(moduleId) : fetchAllChallenges();
+    const fetchPromise = moduleId ? fetchUserChallengesByModule(userId, moduleId) : fetchUserChallenges(userId);
 
     fetchPromise
     .then(challenges => {
     
         challenges.forEach(challenge =>  
         {
-            console.log(challenge);
                 challengesList.innerHTML += `
                 <div class="card">
-                <div class="statusIndicator">Done</div>
+                <div class="statusIndicator" >${challenge.isSolved ? '✔️' : '❌'}</div>
                 <div class="titleContent">
                 <p class="cardTitle">${challenge.id}. ${challenge.title}</p>
                 <p class="cardDiff">${challenge.difficulty}</p>
@@ -26,7 +27,8 @@ const moduleId = parseInt(params.get('moduleId'))
                         </div>
                         `;
                         
-                        challengesList.addEventListener('click', (event) => {
+
+challengesList.addEventListener('click', (event) => {
             const button = event.target.closest('.cardAction');
             if (!button) return;
             const { challengeId } = button.dataset;
