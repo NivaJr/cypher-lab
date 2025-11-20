@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankings - CypherLab</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components/header.css">
+    <link rel="stylesheet" href="../assets/css/pages/rankings.css">
+</head>
+<body>
+    <div id="headerComponent"></div>
+
+    <main>
+        <section class="rankingsSection">
+            <div class="rankingsHeader">
+                <h1>🏆 Ranking Global</h1>
+                <p class="rankingsSubtitle">Confira os melhores jogadores do CypherLab</p>
+            </div>
+
+            <div class="rankingsContainer">
+                <div class="rankingsTable">
+                    <div class="tableHeader">
+                        <span class="headerPosition">Posição</span>
+                        <span class="headerUser">Usuário</span>
+                        <span class="headerPoints">Pontos</span>
+                    </div>
+                    <div class="tableBody" id="rankingsTableBody">
+                        <!-- Rankings serão renderizados aqui -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/script.js" type="module"></script>
+    <script src="../assets/js/pages/rankings.js" type="module"></script>
+</body>
+</html>

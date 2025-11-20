@@ -1,0 +1,215 @@
+main {
+    padding: 2rem;
+    background-color: #0F0F23;
+    min-height: 100vh;
+}
+
+/* Rankings Section */
+.rankingsSection {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.rankingsHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.rankingsHeader h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.rankingsSubtitle {
+    font-size: 1rem;
+    color: #9CA3AF;
+}
+
+/* Rankings Container */
+.rankingsContainer {
+    background-color: #1A1A3A;
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+/* Table Styles */
+.rankingsTable {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 100px 1fr 150px;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: #0F0F23;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #9CA3AF;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.tableBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.rankingRow {
+    display: grid;
+    grid-template-columns: 100px 1fr 150px;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background-color: #2A2A4A;
+    border-radius: 12px;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rankingRow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Posição */
+.rankingPosition {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.positionBadge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.positionBadge.gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #1A1A3A;
+}
+
+.positionBadge.silver {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    color: #1A1A3A;
+}
+
+.positionBadge.bronze {
+    background: linear-gradient(135deg, #CD7F32 0%, #B87333 100%);
+    color: #1A1A3A;
+}
+
+.positionBadge.default {
+    background-color: #3A3A5A;
+    color: white;
+}
+
+/* Usuário */
+.rankingUser {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.userAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: bold;
+}
+
+.userEmail {
+    color: white;
+    font-size: 1rem;
+}
+
+/* Pontos */
+.rankingPoints {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.pointsBadge {
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Loading State */
+.loadingState {
+    text-align: center;
+    padding: 3rem;
+    color: #9CA3AF;
+}
+
+.loadingState .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #2A2A4A;
+    border-top-color: #7C3AED;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: #9CA3AF;
+}
+
+.emptyState .emptyIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tableHeader,
+    .rankingRow {
+        grid-template-columns: 80px 1fr 100px;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .rankingsHeader h1 {
+        font-size: 2rem;
+    }
+
+    .userEmail {
+        font-size: 0.875rem;
+    }
+
+    .pointsBadge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
