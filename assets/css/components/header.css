@@ -64,6 +64,13 @@ nav ul li:hover {
     width: 40px;
     height: 40px;
     font-size: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
     cursor: pointer;
 }
 
