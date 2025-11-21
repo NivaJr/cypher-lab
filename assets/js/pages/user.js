@@ -15,7 +15,7 @@ const successRateEl = document.getElementById('successRate');
 const progressContainer = document.getElementById('progressContainer');
 
 // Função para obter iniciais do email
-function getEmailInitials(email) {
+export function getEmailInitials(email) {
     if (!email) return 'U';
     const name = email.split('@')[0];
     if (name.length === 1) return name.toUpperCase();
