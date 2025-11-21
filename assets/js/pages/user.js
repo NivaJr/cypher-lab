@@ -1,332 +1,205 @@
-// ...existing code...
-(() => {
-  'use strict';
+import { fetchUserProgress } from "../services/progressService.js";
 
-  const STORAGE_KEY = 'cypher_user';
+// Obter dados do usuário do localStorage
+const userData = JSON.parse(localStorage.getItem('userData'));
+const userId = userData?.id;
 
-  async function fetchRemoteUser() {
+// Elementos do DOM
+const userNameEl = document.getElementById('userName');
+const userEmailEl = document.getElementById('userEmail');
+const userAvatarEl = document.getElementById('userAvatar');
+const totalPointsEl = document.getElementById('totalPoints');
+const completedChallengesEl = document.getElementById('completedChallenges');
+const totalAttemptsEl = document.getElementById('totalAttempts');
+const successRateEl = document.getElementById('successRate');
+const progressContainer = document.getElementById('progressContainer');
+
+// Função para obter iniciais do email
+function getEmailInitials(email) {
+    if (!email) return 'U';
+    const name = email.split('@')[0];
+    if (name.length === 1) return name.toUpperCase();
+    return name.substring(0, 2).toUpperCase();
+}
+
+// Função para formatar data LocalDateTime do Java
+function formatDateTime(dateTimeString) {
+    if (!dateTimeString) return 'N/A';
     try {
-      const response = await fetch('/api/user', { cache: 'no-store' });
-      if (!response.ok) throw new Error('Network response was not ok');
-      return await response.json();
-    } catch (error) {
-      console.error('Failed to fetch user data:', error);
-      return null;
-    }
-  }
+        // LocalDateTime vem no formato: "2024-01-15T14:30:00"
+        const date = new Date(dateTimeString);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
 
-  function readLocalUser() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch (error) {
-      console.error('Failed to read local user data:', error);
-      return null;
-    }
-  }
-
-  function saveLocalUser(user) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    } catch (error) {
-      console.error('Failed to save user data to local storage:', error);
-    }
-  }
-
-  function populateProfile(user) {
-    const nameEl = document.querySelector('.profile-name');
-    const handleEl = document.querySelector('.profile-handle');
-    const bioEl = document.querySelector('.profile-bio');
-    const avatarEl = document.querySelector('.avatar-img');
-    const emailEl = document.getElementById('email-text');
-    const memberSinceEl = document.querySelector('.member-since span');
-
-    if (nameEl) nameEl.textContent = user.name || '';
-    if (handleEl) handleEl.textContent = user.handle || '';
-    if (bioEl) bioEl.textContent = user.bio || '';
-    if (emailEl) emailEl.textContent = user.email || '';
-    if (memberSinceEl) memberSinceEl.textContent = user.memberSince || '';
-
-    if (avatarEl) {
-      avatarEl.src = user.avatar || buildAvatarUrlFromInitials(initialsFromName(user.name));
-      avatarEl.alt = `Avatar de ${user.name || 'Usuário'}`;
-    }
-  }
-
-  function initialsFromName(name = '') {
-    const parts = name.trim().split(/\s+/).filter(Boolean);
-    return parts.length === 0 ? 'U' : (parts.length === 1 ? parts[0].slice(0, 2).toUpperCase() : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase());
-  }
-
-  function buildAvatarUrlFromInitials(initials) {
-    return `https://placehold.co/96x96/111827/ffffff?text=${encodeURIComponent(initials)}`;
-  }
-
-  async function init() {
-    let user = readLocalUser();
-
-    if (!user) {
-      user = await fetchRemoteUser();
-    }
-
-    if (!user) {
-      console.warn('No user data available, using default values.');
-      user = {
-        name: 'Default User',
-        handle: '@defaultuser',
-        bio: 'This is a default user profile.',
-        email: 'default.user@example.com',
-        avatar: buildAvatarUrlFromInitials('DU'),
-        memberSince: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
-      };
-    }
-
-    populateProfile(user);
-    saveLocalUser(user);
-  }
-
-  const $ = (s, ctx = document) => ctx.querySelector(s);
-  const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
-
-  function escapeHtml(str = '') {
-    return String(str).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  }
-
-  function showMessage(text, timeout = 2600) {
-    const box = $('#message-box');
-    if (!box) return;
-    box.textContent = text;
-    box.classList.remove('hidden');
-    clearTimeout(box._timer);
-    box._timer = setTimeout(() => box.classList.add('hidden'), timeout);
-  }
-
-  function readLocalUser() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
+        if (diffMins < 60) return `${diffMins} min atrás`;
+        if (diffHours < 24) return `${diffHours}h atrás`;
+        if (diffDays === 1) return '1 dia atrás';
+        if (diffDays < 7) return `${diffDays} dias atrás`;
+        
+        return date.toLocaleDateString('pt-BR', { 
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric' 
+        });
     } catch (e) {
-      return null;
+        return dateTimeString;
     }
-  }
+}
 
-  function saveLocalUser(user) {
+// Função para obter classe de dificuldade
+function getDifficultyClass(difficulty) {
+    const difficultyLower = difficulty?.toLowerCase();
+    if (difficultyLower === 'easy' || difficultyLower === 'fácil') return 'easy';
+    if (difficultyLower === 'medium' || difficultyLower === 'médio') return 'medium';
+    if (difficultyLower === 'hard' || difficultyLower === 'difícil') return 'hard';
+    return 'medium';
+}
+
+// Função para traduzir dificuldade
+function translateDifficulty(difficulty) {
+    const map = {
+        'easy': 'Fácil',
+        'medium': 'Médio',
+        'hard': 'Difícil'
+    };
+    return map[difficulty?.toLowerCase()] || difficulty;
+}
+
+// Função para renderizar progresso
+function renderProgress(progressList) {
+    progressContainer.innerHTML = '';
+
+    if (!progressList || progressList.length === 0) {
+        progressContainer.innerHTML = `
+            <div class="emptyState">
+                <div class="emptyIcon">📊</div>
+                <p>Nenhum progresso registrado ainda</p>
+            </div>
+        `;
+        return;
+    }
+
+    progressList.forEach(item => {
+        const difficultyClass = getDifficultyClass(item.challengeDifficulty);
+        const difficultyText = translateDifficulty(item.challengeDifficulty);
+        const statusClass = item.solved ? 'solved' : 'notSolved';
+        const statusText = item.solved ? '✅ Resolvido' : '⏳ Não Resolvido';
+
+        const progressItem = document.createElement('div');
+        progressItem.className = 'progressItem';
+        progressItem.innerHTML = `
+            <div class="progressHeader">
+                <div class="progressTitle">
+                    <h3 class="challengeTitle">${item.challengeTitle}</h3>
+                    <span class="challengeDifficulty ${difficultyClass}">${difficultyText}</span>
+                </div>
+                <div class="progressStatus">
+                    <span class="statusBadge ${statusClass}">${statusText}</span>
+                </div>
+            </div>
+            <div class="progressDetails">
+                <div class="detailItem">
+                    <span class="detailLabel">Tentativas</span>
+                    <span class="detailValue">${item.attempts}</span>
+                </div>
+                <div class="detailItem">
+                    <span class="detailLabel">Pontos Ganhos</span>
+                    <span class="detailValue points">${item.pointsEarned} pts</span>
+                </div>
+                <div class="detailItem">
+                    <span class="detailLabel">${item.solved ? 'Resolvido em' : 'Última Tentativa'}</span>
+                    <span class="detailValue date">${formatDateTime(item.solved ? item.solvedAt : item.lastAttemptAt)}</span>
+                </div>
+            </div>
+        `;
+
+        progressContainer.appendChild(progressItem);
+    });
+}
+
+// Função para calcular estatísticas
+function calculateStats(progressList) {
+    if (!progressList || progressList.length === 0) {
+        return {
+            totalPoints: 0,
+            completedChallenges: 0,
+            totalAttempts: 0,
+            successRate: 0
+        };
+    }
+
+    const totalPoints = progressList.reduce((sum, item) => sum + (item.pointsEarned || 0), 0);
+    const completedChallenges = progressList.filter(item => item.solved).length;
+    const totalAttempts = progressList.reduce((sum, item) => sum + (item.attempts || 0), 0);
+    const successRate = totalAttempts > 0 
+        ? Math.round((completedChallenges / progressList.length) * 100) 
+        : 0;
+
+    return {
+        totalPoints,
+        completedChallenges,
+        totalAttempts,
+        successRate
+    };
+}
+
+// Função para mostrar loading
+function showLoading() {
+    progressContainer.innerHTML = `
+        <div class="loadingState">
+            <div class="spinner"></div>
+            <p>Carregando progresso...</p>
+        </div>
+    `;
+}
+
+// Função para inicializar página
+async function init() {
+    // Exibir dados do usuário
+    if (userData) {
+        userNameEl.textContent = userData.name || userData.email;
+        userEmailEl.textContent = userData.email;
+        userAvatarEl.textContent = getEmailInitials(userData.email);
+    }
+
+    // Verificar se tem userId
+    if (!userId) {
+        console.error('Usuário não autenticado');
+        progressContainer.innerHTML = `
+            <div class="emptyState">
+                <div class="emptyIcon">🔒</div>
+                <p>Você precisa fazer login para ver seu progresso</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Buscar progresso do backend
+    showLoading();
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    } catch (e) {
-      // ignore
+        const progressList = await fetchUserProgress(userId);
+        const stats = calculateStats(progressList);
+
+        // Atualizar estatísticas
+        totalPointsEl.textContent = stats.totalPoints;
+        completedChallengesEl.textContent = stats.completedChallenges;
+        totalAttemptsEl.textContent = stats.totalAttempts;
+        successRateEl.textContent = `${stats.successRate}%`;
+
+        // Renderizar progresso
+        renderProgress(progressList);
+    } catch (error) {
+        console.error('Erro ao buscar progresso:', error);
+        progressContainer.innerHTML = `
+            <div class="emptyState">
+                <div class="emptyIcon">❌</div>
+                <p>Erro ao carregar progresso</p>
+            </div>
+        `;
     }
-  }
+}
 
-  async function fetchRemoteUser() {
-    // tenta carregar de possíveis locais (ignore erros)
-    const tryList = ['/api/user', '/assets/data/user.json', '../assets/data/user.json'];
-    for (const path of tryList) {
-      try {
-        const res = await fetch(path, { cache: 'no-store' });
-        if (!res.ok) continue;
-        const json = await res.json();
-        return json;
-      } catch (e) { /* continue */ }
-    }
-    return null;
-  }
-
-  function initialsFromName(name = '') {
-    const parts = name.trim().split(/\s+/).filter(Boolean);
-    if (parts.length === 0) return 'U';
-    if (parts.length === 1) return parts[0].slice(0,2).toUpperCase();
-    return (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
-  }
-
-  function buildAvatarUrlFromInitials(initials) {
-    return `https://placehold.co/96x96/111827/ffffff?text=${encodeURIComponent(initials)}`;
-  }
-
-  function populateProfile(user) {
-    const nameEl = $('.profile-name');
-    const handleEl = $('.profile-handle');
-    const bioEl = $('.profile-bio');
-    const avatarEl = $('.avatar-img');
-    const emailEl = $('#email-text');
-    const memberSinceEl = $('.member-since span');
-
-    if (nameEl) nameEl.textContent = user.name || '';
-    if (handleEl) handleEl.textContent = user.handle || '';
-    if (bioEl) bioEl.textContent = user.bio || '';
-    if (emailEl) emailEl.textContent = user.email || '';
-    if (memberSinceEl) memberSinceEl.textContent = user.memberSince || '';
-
-    if (avatarEl) {
-      if (user.avatar) avatarEl.src = user.avatar;
-      else avatarEl.src = buildAvatarUrlFromInitials(initialsFromName(user.name));
-      avatarEl.alt = `Avatar de ${user.name || 'Usuário'}`;
-    }
-
-    // avatar initial on nav button (if exists)
-    const avatarBtn = $('.avatar-btn');
-    if (avatarBtn) {
-      avatarBtn.textContent = (user.name ? initialsFromName(user.name) : (user.email ? user.email[0].toUpperCase() : 'U'));
-    }
-  }
-
-  function populateStats(user) {
-    const statEls = $$('.stat');
-    if (!statEls.length) return;
-    const stats = user.stats || {};
-    // assume order matches markup
-    const total = statEls[0];
-    const challenges = statEls[1];
-    const rank = statEls[2];
-
-    total.querySelector('.big') && (total.querySelector('.big').textContent = stats.score ?? '');
-    total.querySelector('.tiny') && (total.querySelector('.tiny').textContent = stats.today ?? '');
-
-    challenges.querySelector('.big') && (challenges.querySelector('.big').textContent = stats.challenges ?? '');
-    challenges.querySelector('.tiny') && (challenges.querySelector('.tiny').textContent = stats.progress ?? '');
-
-    rank.querySelector('.big') && (rank.querySelector('.big').textContent = stats.rank ?? '');
-    rank.querySelector('.tiny') && (rank.querySelector('.tiny').textContent = stats.top ?? '');
-  }
-
-  function createAchievementNode(a) {
-    const wrap = document.createElement('div');
-    wrap.className = 'achievement';
-    wrap.innerHTML = `
-      <div class="ach-icon bg-slate">
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v8l3 3" />
-        </svg>
-      </div>
-      <div>
-        <p class="strong">${escapeHtml(a.title || '')}</p>
-        <p class="muted small">${escapeHtml(a.desc || '')}</p>
-      </div>
-    `;
-    return wrap;
-  }
-
-  function populateAchievements(user) {
-    const container = $('.achievements');
-    if (!container) return;
-    container.innerHTML = '';
-    (user.achievements || []).forEach(a => container.appendChild(createAchievementNode(a)));
-  }
-
-  function createActivityNode(item) {
-    const li = document.createElement('li');
-    li.className = 'activity-item';
-    li.innerHTML = `
-      <div class="activity-row">
-        <div class="activity-main">
-          <p class="activity-title">${escapeHtml(item.title || '')}</p>
-          <p class="muted small">${escapeHtml(item.category || '')}</p>
-        </div>
-        <div class="activity-meta">
-          <p class="activity-points plus">${escapeHtml(item.points || '')}</p>
-          <p class="muted small">${escapeHtml(item.time || '')}</p>
-        </div>
-      </div>
-    `;
-    return li;
-  }
-
-  function populateActivity(user) {
-    const list = $('.activity-list');
-    if (!list) return;
-    list.innerHTML = '';
-    (user.activity || []).forEach(act => list.appendChild(createActivityNode(act)));
-  }
-
-  function bindUI(user) {
-    const emailBtn = $('#email-btn');
-    if (emailBtn) {
-      emailBtn.addEventListener('click', () => {
-        const email = $('#email-text')?.textContent || user.email || '';
-        if (!email) return showMessage('Nenhum email disponível');
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(email).then(() => showMessage('Email copiado'));
-        } else {
-          const ta = document.createElement('textarea');
-          ta.value = email;
-          ta.style.position = 'fixed';
-          ta.style.left = '-9999px';
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); showMessage('Email copiado'); } catch (e) { showMessage('Não foi possível copiar'); }
-          ta.remove();
-        }
-      });
-    }
-
-    const editBtn = $('#edit-profile-btn');
-    if (editBtn) {
-      editBtn.addEventListener('click', () => {
-        const current = readLocalUser() || user;
-        const newName = prompt('Nome completo:', current.name || '')?.trim();
-        if (newName === null) return;
-        const newBio = prompt('Biografia (curta):', current.bio || '') ?? '';
-        current.name = newName || current.name;
-        current.bio = (newBio === null) ? current.bio : newBio;
-        // if avatar is initials-based, regenerate
-        if (!current.avatar || current.avatar.includes('placehold.co')) {
-          current.avatar = buildAvatarUrlFromInitials(initialsFromName(current.name));
-        }
-        saveLocalUser(current);
-        populateProfile(current);
-        showMessage('Perfil atualizado');
-      });
-    }
-
-    const avatarBtn = $('.avatar-btn');
-    if (avatarBtn) {
-      avatarBtn.addEventListener('click', () => {
-        // se quiser redirecionar para login/logout, ajuste aqui
-        if (confirm('Deseja sair (logout)?')) {
-          localStorage.removeItem(STORAGE_KEY);
-          showMessage('Desconectado');
-          // tente redirecionar para login se existir
-          setTimeout(() => {
-            if (location.pathname.endsWith('/pages/user.html')) location.href = 'login.html';
-            else location.href = './login.html';
-          }, 800);
-        }
-      });
-    }
-  }
-
-  async function init() {
-    // 1) prefer localStorage
-    let user = readLocalUser();
-
-    // 2) if not in localStorage, try remote JSON
-    if (!user) {
-      user = await fetchRemoteUser();
-    }
-
-    // 3) fallback sample
-    if (!user) user = SAMPLE_USER;
-
-    // normalize some fields
-    user.name = user.name || '';
-    user.handle = user.handle || (user.name ? '@' + user.name.replace(/\s+/g,'').toLowerCase() : (user.email ? '@' + user.email.split('@')[0] : '@user'));
-    user.email = user.email || '';
-    user.memberSince = user.memberSince || (new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }));
-
-    // populate DOM
-    populateProfile(user);
-    populateStats(user);
-    populateAchievements(user);
-    populateActivity(user);
-
-    // save default user to localStorage if it came from remote/sample
-    if (!readLocalUser()) saveLocalUser(user);
-
-    bindUI(user);
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
-  
-// ...existing code...
+init();
