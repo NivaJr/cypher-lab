@@ -68,7 +68,7 @@ function renderRankings(rankings) {
             </div>
             <div class="rankingUser">
                 <div class="userAvatar">${initials}</div>
-                <span class="userEmail">${user.email}</span>
+                <span class="userEmail">${user.username}</span>
             </div>
             <div class="rankingPoints">
                 <span class="pointsBadge">${user.pontos} pts</span>
