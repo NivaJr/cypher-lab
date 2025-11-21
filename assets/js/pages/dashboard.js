@@ -6,7 +6,7 @@ import { MODULE_ICONS, getIconById } from "../constants/moduleIcons.js";
 // modulos estaticos
 
 let idUser = JSON.parse(localStorage.getItem("userData")).id;
-
+console.log(localStorage.getItem("userData"));
 // let idUser = 2; // substituir pela lógica de autenticação real
 
 const modulesData = await fetchAllModulesProgress(idUser);
@@ -36,7 +36,6 @@ function renderModules() {
     modulesContainer.innerHTML = '';
     
     modulesData.forEach(module => {
-        console.log(module);
 
 
         const button = getButtonConfig(module.status);
@@ -93,7 +92,6 @@ function updateStats() {
 const challenges = await fetchAllChallenges();
 fetchUserSolvedProgress(idUser)
     .then(progress => {
-        console.log(progress);
 
         if(progress){
 
@@ -115,7 +113,6 @@ fetchUserSolvedProgress(idUser)
 
 fetchUserRank(idUser)
     .then(rankData => {
-        console.log(rankData);
         if(rankData){  
             document.querySelector('h2#ranking').textContent = `#${rankData.rank}`;
         }

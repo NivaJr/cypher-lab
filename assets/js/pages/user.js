@@ -25,27 +25,39 @@ function getEmailInitials(email) {
 // Função para formatar data LocalDateTime do Java
 function formatDateTime(dateTimeString) {
     if (!dateTimeString) return 'N/A';
+    
     try {
-        // LocalDateTime vem no formato: "2024-01-15T14:30:00"
-        const date = new Date(dateTimeString);
-        const now = new Date();
-        const diffMs = now - date;
-        const diffMins = Math.floor(diffMs / 60000);
-        const diffHours = Math.floor(diffMs / 3600000);
-        const diffDays = Math.floor(diffMs / 86400000);
-
-        if (diffMins < 60) return `${diffMins} min atrás`;
-        if (diffHours < 24) return `${diffHours}h atrás`;
-        if (diffDays === 1) return '1 dia atrás';
-        if (diffDays < 7) return `${diffDays} dias atrás`;
+        // Se vier como array [ano, mês, dia, hora, minuto, segundo]
+        if (Array.isArray(dateTimeString)) {
+            const [year, month, day, hour, minute] = dateTimeString;
+            const date = new Date(year, month - 1, day, hour || 0, minute || 0);
+            
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            const hh = String(date.getHours()).padStart(2, '0');
+            const min = String(date.getMinutes()).padStart(2, '0');
+            
+            return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
+        }
         
-        return date.toLocaleDateString('pt-BR', { 
-            day: '2-digit', 
-            month: '2-digit', 
-            year: 'numeric' 
-        });
+        // Se vier como string "2024-01-15T14:30:00"
+        const date = new Date(dateTimeString);
+        
+        if (isNaN(date.getTime())) {
+            return 'Data inválida';
+        }
+        
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const yyyy = date.getFullYear();
+        const hh = String(date.getHours()).padStart(2, '0');
+        const min = String(date.getMinutes()).padStart(2, '0');
+        
+        return `${dd}/${mm}/${yyyy} ${hh}:${min}`;
     } catch (e) {
-        return dateTimeString;
+        console.error('Erro ao formatar data:', e, dateTimeString);
+        return 'N/A';
     }
 }
 
@@ -87,6 +99,10 @@ function renderProgress(progressList) {
         const difficultyText = translateDifficulty(item.challengeDifficulty);
         const statusClass = item.solved ? 'solved' : 'notSolved';
         const statusText = item.solved ? '✅ Resolvido' : '⏳ Não Resolvido';
+        
+        const formattedSolvedAt = item.solved ? formatDateTime(item.solvedAt) : 'N/A';
+        const formattedLastAttempt = formatDateTime(item.lastAttemptAt);
+        console.log(item.lastAttemptAt);
 
         const progressItem = document.createElement('div');
         progressItem.className = 'progressItem';
@@ -107,11 +123,11 @@ function renderProgress(progressList) {
                 </div>
                 <div class="detailItem">
                     <span class="detailLabel">Pontos Ganhos</span>
-                    <span class="detailValue points">${item.pointsEarned} pts</span>
+                    <span class="detailValue points">${item.pointsEarned || 0} pts</span>
                 </div>
                 <div class="detailItem">
                     <span class="detailLabel">${item.solved ? 'Resolvido em' : 'Última Tentativa'}</span>
-                    <span class="detailValue date">${formatDateTime(item.solved ? item.solvedAt : item.lastAttemptAt)}</span>
+                    <span class="detailValue date">${item.solved ? formattedSolvedAt : formattedLastAttempt}</span>
                 </div>
             </div>
         `;
@@ -160,7 +176,7 @@ function showLoading() {
 async function init() {
     // Exibir dados do usuário
     if (userData) {
-        userNameEl.textContent = userData.name || userData.email;
+        userNameEl.textContent = userData.username;
         userEmailEl.textContent = userData.email;
         userAvatarEl.textContent = getEmailInitials(userData.email);
     }
