@@ -1,9 +1,8 @@
-import { API_URL } from "./api.js";
-import { getToken } from "./api.js";
+import { API_URL, fetchWithAuth } from "./api.js";
 
 export async function fetchChallenge(challengeId) {
     const url = API_URL + `/challenges/${challengeId}`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar desafio', res.status);
     }
@@ -13,7 +12,7 @@ export async function fetchChallenge(challengeId) {
 
 export const fetchAllChallenges =  async () => {
     const url = API_URL + `/challenges`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if(!res.ok) {
         throw new Error('Erro ao buscar is desafios', res.status)
     }
@@ -22,7 +21,7 @@ export const fetchAllChallenges =  async () => {
 
 export const fetchChallengesByModule = async (moduleId) => {
     const url = API_URL + `/module/${moduleId}/challenges`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if(!res.ok) {
         throw new Error('Erro ao buscar os desafios do módulo', res.status)
     }   
@@ -33,14 +32,9 @@ export const fetchChallengesByModule = async (moduleId) => {
 
 export async function createChallenge(challengeData) {
     const url = API_URL + `/admin/challenge`;
-    const token = getToken();
     
-    const res = await fetch(url, {
+    const res = await fetchWithAuth(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify(challengeData)
     });
     
@@ -52,14 +46,9 @@ export async function createChallenge(challengeData) {
 
 export async function updateChallenge(challengeId, challengeData) {
     const url = API_URL + `/admin/challenge/${challengeId}`;
-    const token = getToken();
     
-    const res = await fetch(url, {
+    const res = await fetchWithAuth(url, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify(challengeData)
     });
     
@@ -71,13 +60,9 @@ export async function updateChallenge(challengeId, challengeData) {
 
 export async function deleteChallenge(challengeId) {
     const url = API_URL + `/admin/challenge/${challengeId}`;
-    const token = getToken();
     
-    const res = await fetch(url, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+    const res = await fetchWithAuth(url, {
+        method: 'DELETE'
     });
     
     if (!res.ok) {

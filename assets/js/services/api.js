@@ -11,3 +11,22 @@ export const getToken = ()=> {
 export const isAdmin = ()=> {
     return localStorage.getItem("userData") && JSON.parse(localStorage.getItem("userData")).role === 'ADMIN';
 }
+
+export const fetchWithAuth = async (url, options = {}) => {
+    const token = getToken();
+    
+    // Mescla headers padrão com headers customizados
+    const headers = {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...options.headers
+    };
+    
+    // Configura as opções do fetch
+    const config = {
+        ...options,
+        headers
+    };
+    
+    return fetch(url, config);
+}

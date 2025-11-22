@@ -1,9 +1,8 @@
-import { API_URL } from "./api.js";
-import { getToken } from "./api.js";
+import { API_URL, fetchWithAuth } from "./api.js";
 
 export async function fetchModule(moduleId) {
     const url = API_URL + `/module/${moduleId}`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar módulo', res.status);
     }
@@ -13,7 +12,7 @@ export async function fetchModule(moduleId) {
 
 export const fetchAllModules =  async () => {
     const url = API_URL + `/modules`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if(!res.ok) {
         throw new Error('Erro ao buscar os módulos', res.status)
     }
@@ -23,15 +22,10 @@ export const fetchAllModules =  async () => {
 // Funções administrativas
 
 export async function createModule(moduleData) {
-    const token = getToken();
     const url = API_URL + `/admin/module`;
     
-    const res = await fetch(url, {
+    const res = await fetchWithAuth(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify(moduleData)
     });
     
@@ -43,14 +37,10 @@ export async function createModule(moduleData) {
 
 export async function updateModule(moduleId, moduleData) {
     const url = API_URL + `/admin/module/${moduleId}`;
-    const token = getToken();
     console.log(moduleData);
-    const res = await fetch(url, {
+    
+    const res = await fetchWithAuth(url, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify(moduleData)
     });
     
@@ -62,13 +52,9 @@ export async function updateModule(moduleId, moduleData) {
 
 export async function deleteModule(moduleId) {
     const url = API_URL + `/admin/module/${moduleId}`;
-    const token = getToken();
     
-    const res = await fetch(url, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+    const res = await fetchWithAuth(url, {
+        method: 'DELETE'
     });
     
     if (!res.ok) {

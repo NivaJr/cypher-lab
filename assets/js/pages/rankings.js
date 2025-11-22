@@ -1,4 +1,4 @@
-import { API_URL } from "../services/api.js";
+import { API_URL, fetchWithAuth } from "../services/api.js";
 import { checkAuth } from "../services/routeGuard.js";
 
 // Proteção de rota - verifica se está autenticado
@@ -11,14 +11,7 @@ const rankingsTableBody = document.getElementById('rankingsTableBody');
 // Função para buscar rankings do backend
 async function fetchRankings() {
     try {
-        const token = localStorage.getItem('authToken');
-        const response = await fetch(`${API_URL}/user/ranking`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await fetchWithAuth(`${API_URL}/user/ranking`);
 
         if (!response.ok) {
             throw new Error('Erro ao buscar rankings');

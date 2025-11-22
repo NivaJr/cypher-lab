@@ -1,4 +1,4 @@
-import { API_URL } from "../services/api.js";
+import { API_URL, fetchWithAuth } from "../services/api.js";
 import { fetchChallenge } from "../services/challengeService.js";
 import { checkAuth } from "../services/routeGuard.js";
 
@@ -51,11 +51,8 @@ const userId = JSON.parse(localStorage.getItem("userData")).id;
             const userAnswer = input.value.trim()
             console.log(userAnswer)
             
-            const res = await fetch(`${API_URL}/user/${userId}/challenges/${challengeId}/submit`, {
+            const res = await fetchWithAuth(`${API_URL}/user/${userId}/challenges/${challengeId}/submit`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({
                     answer: userAnswer
                 })

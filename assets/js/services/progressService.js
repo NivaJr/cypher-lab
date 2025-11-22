@@ -1,8 +1,8 @@
-import { API_URL } from "./api.js";
+import { API_URL, fetchWithAuth } from "./api.js";
 
 export async function fetchUserProgress(userId) {
     const url = API_URL + `/user/${userId}/progress`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar progresso do usuário', res.status);
     }
@@ -10,7 +10,7 @@ export async function fetchUserProgress(userId) {
 }
 export async function fetchUserChallenges(userId) {
     const url = API_URL + `/user/${userId}/challenges`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar desafios do usuário', res.status);
     }
@@ -19,7 +19,7 @@ export async function fetchUserChallenges(userId) {
 
 export async function fetchUserChallengesByModule(userId, moduleId) {
     const url = API_URL + `/user/${userId}/modules/${moduleId}/challenges`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar desafios do usuário', res.status);
     }
@@ -28,7 +28,7 @@ export async function fetchUserChallengesByModule(userId, moduleId) {
 
 export async function fetchUserSolvedProgress(userId) {
     const url = API_URL + `/user/${userId}/solved`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar progresso do usuário', res.status);
     }
@@ -37,7 +37,7 @@ export async function fetchUserSolvedProgress(userId) {
 
 export async function fetchUserStreak(userId) {
     const url = API_URL + `/user/${userId}/streak`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar streak do usuário', res.status);
     }
@@ -46,7 +46,7 @@ export async function fetchUserStreak(userId) {
 
 export async function fetchUserRank(userId) {
     const url = API_URL + `/user/${userId}/rank`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if (!res.ok) {
         throw new Error('Erro ao buscar rank do usuário', res.status);
     }
@@ -56,7 +56,7 @@ export async function fetchUserRank(userId) {
 
 export const fetchAllModulesProgress =  async (userId) => {
     const url = API_URL + `/user/${userId}/modules/progress`;
-    const res = await fetch(url)
+    const res = await fetchWithAuth(url);
     if(!res.ok) {
         throw new Error('Erro ao buscar o progresso dos módulos', res.status)
     }
