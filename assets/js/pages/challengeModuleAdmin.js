@@ -1,6 +1,12 @@
 import { fetchAllModules } from "../services/moduleService.js";
 import { createModule, updateModule, deleteModule } from "../services/moduleService.js";
 import { MODULE_ICONS, getIconById } from "../constants/moduleIcons.js";
+import { checkAdminAuth } from "../services/routeGuard.js";
+
+// Proteção de rota - verifica se é admin
+if (!checkAdminAuth()) {
+    throw new Error('Acesso não autorizado - apenas administradores');
+}
 
 let modules = [];
 let currentEditingId = null;

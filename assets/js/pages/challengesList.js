@@ -1,5 +1,11 @@
 import { fetchAllChallenges, fetchChallenge, fetchChallengesByModule } from "../services/challengeService.js";
 import { fetchUserChallenges, fetchUserChallengesByModule } from "../services/progressService.js";
+import { checkAuth } from "../services/routeGuard.js";
+
+// Proteção de rota - verifica se está autenticado
+if (!checkAuth()) {
+    throw new Error('Acesso não autorizado');
+}
 
 const challengesList = document.getElementById("listContainer");
 

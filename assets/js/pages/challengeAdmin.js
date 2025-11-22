@@ -1,6 +1,12 @@
 import { fetchChallengesByModule } from "../services/challengeService.js";
 import { createChallenge, updateChallenge, deleteChallenge } from "../services/challengeService.js";
 import { fetchModule } from "../services/moduleService.js";
+import { checkAdminAuth } from "../services/routeGuard.js";
+
+// Proteção de rota - verifica se é admin
+if (!checkAdminAuth()) {
+    throw new Error('Acesso não autorizado - apenas administradores');
+}
 
 let challenges = [];
 let currentEditingId = null;

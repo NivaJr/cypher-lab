@@ -1,7 +1,12 @@
 import { fetchAllChallenges } from "../services/challengeService.js";
 import { fetchUserProgress, fetchUserSolvedProgress, fetchUserRank, fetchAllModulesProgress, fetchUserStreak } from "../services/progressService.js";
 import { MODULE_ICONS, getIconById } from "../constants/moduleIcons.js";
+import { checkAuth } from "../services/routeGuard.js";
 
+// Proteção de rota - verifica se está autenticado
+if (!checkAuth()) {
+    throw new Error('Acesso não autorizado');
+}
 
 // modulos estaticos
 

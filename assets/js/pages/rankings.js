@@ -1,4 +1,10 @@
 import { API_URL } from "../services/api.js";
+import { checkAuth } from "../services/routeGuard.js";
+
+// Proteção de rota - verifica se está autenticado
+if (!checkAuth()) {
+    throw new Error('Acesso não autorizado');
+}
 
 const rankingsTableBody = document.getElementById('rankingsTableBody');
 

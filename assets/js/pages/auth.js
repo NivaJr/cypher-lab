@@ -1,4 +1,8 @@
 import { AUTH_URL } from "../services/api.js";
+import { checkGuest } from "../services/routeGuard.js";
+
+// Proteção de rota - previne acesso se já estiver logado
+checkGuest();
 
 const authUrl = AUTH_URL;
 

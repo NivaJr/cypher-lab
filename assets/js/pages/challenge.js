@@ -1,6 +1,11 @@
 import { API_URL } from "../services/api.js";
-import { fetchChallenge } from "../services/challengeService.js"
-    
+import { fetchChallenge } from "../services/challengeService.js";
+import { checkAuth } from "../services/routeGuard.js";
+
+// Proteção de rota - verifica se está autenticado
+if (!checkAuth()) {
+    throw new Error('Acesso não autorizado');
+}
 
 const params = new URLSearchParams(window.location.search);
 const challengeId = parseInt(params.get('challengeId') || '1', 10);
