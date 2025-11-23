@@ -223,7 +223,7 @@ const response = await fetchWithAuth('/api/user/progress');
 ## 👥 Contribuidores
 
 - **[NivaJr](https://github.com/NivaJr)** - Frontend Developer
-- **[lfmineiro](https://github.com/lfmineiro)** - Frontend Developer
+- **[lfmineiro](https://github.com/lfmineiro)** - FullStack Developer
 - **[alisson94](https://github.com/alisson94)** - Backend Developer
 
 ---
