@@ -214,9 +214,7 @@ const response = await fetchWithAuth('/api/user/progress');
 - [ ] Sistema de hints progressivos
 - [ ] Modo escuro/claro
 - [ ] Conquistas e troféus
-- [ ] Chat entre usuários
 - [ ] Exportação de relatórios de progresso
-- [ ] Novos módulos (Web Security, Redes, etc)
 - [ ] Sistema de times/grupos
 - [ ] Desafios colaborativos
 
