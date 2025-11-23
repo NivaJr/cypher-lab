@@ -212,7 +212,7 @@ const response = await fetchWithAuth('/api/user/progress');
 ## 📝 Funcionalidades Futuras
 
 - [ ] Sistema de hints progressivos
-- [ ] Modo escuro/claro
+- [ ] sModo escuro/claro
 - [ ] Conquistas e troféus
 - [ ] Exportação de relatórios de progresso
 - [ ] Sistema de times/grupos
@@ -222,9 +222,9 @@ const response = await fetchWithAuth('/api/user/progress');
 
 ## 👥 Contribuidores
 
-- **[NivaJr](https://github.com/NivaJr)** - Frontend Developer
+- **[NivaJr](https://github.com/NivaJr)** - FullStack Developer
 - **[lfmineiro](https://github.com/lfmineiro)** - FullStack Developer
-- **[alisson94](https://github.com/alisson94)** - Backend Developer
+- **[alisson94](https://github.com/alisson94)** - FullStack Developer
 
 ---
 
