@@ -124,7 +124,7 @@ cypher-lab-front/
 
 - Navegador moderno (Chrome, Firefox, Edge)
 - Servidor web local (Live Server, http-server, etc)
-- Backend do CypherLab rodando (veja repositório do backend)
+- Backend do CypherLab rodando → **[Repositório Backend](https://github.com/alisson94/cypher-lab)**
 
 ### Instalação
 
@@ -225,29 +225,38 @@ O design foi prototipado no Figma antes da implementação, focando em:
 
 <div align="center">
   
-**Login**
-  
-![Login](images/docs/login.png)
-
-**Dashboard**
-
-![Dashboard](images/docs/dashboard.png)
-
-**Lista de Desafios**
-
-![Challenge List](images/docs/challengeList.png)
-
-**Desafio Individual**
-
-![Challenge](images/docs/challenge6.png)
-
-**Ranking**
-
-![Ranking](images/docs/ranking.png)
-
-**Perfil do Usuário**
-
-![Perfil](images/docs/perfil.png)
+<table>
+  <tr>
+    <td align="center">
+      <strong>Login</strong><br/>
+      <img src="images/docs/login.png" alt="Login" width="300"/>
+    </td>
+    <td align="center">
+      <strong>Dashboard</strong><br/>
+      <img src="images/docs/dashboard.png" alt="Dashboard" width="300"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Lista de Desafios</strong><br/>
+      <img src="images/docs/challengeList.png" alt="Challenge List" width="300"/>
+    </td>
+    <td align="center">
+      <strong>Desafio Individual</strong><br/>
+      <img src="images/docs/challenge6.png" alt="Challenge" width="300"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Ranking</strong><br/>
+      <img src="images/docs/ranking.png" alt="Ranking" width="300"/>
+    </td>
+    <td align="center">
+      <strong>Perfil do Usuário</strong><br/>
+      <img src="images/docs/perfil.png" alt="Perfil" width="300"/>
+    </td>
+  </tr>
+</table>
 
 </div>
 
