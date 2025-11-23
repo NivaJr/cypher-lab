@@ -3,6 +3,11 @@
 <div align="center">
   <img src="images/app-icon.png" alt="CypherLab Logo" width="120"/>
   <p><strong>Plataforma educacional gamificada para aprendizado de cibersegurança</strong></p>
+  
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+  ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 </div>
 
 ---
@@ -14,6 +19,12 @@ O **CypherLab** é uma plataforma web interativa desenvolvida para o ensino prá
 ### 🎯 Objetivo
 
 Oferecer uma experiência de aprendizado hands-on em cibersegurança, com foco em criptografia e técnicas de segurança da informação, substituindo o aprendizado puramente teórico por desafios práticos e interativos.
+
+### 💡 Filosofia Técnica
+
+Este projeto foi desenvolvido intencionalmente **sem o uso de frameworks** (como React, Vue ou Angular) e **sem bibliotecas de utilitários CSS** (como Tailwind ou Bootstrap).
+
+**Objetivo pedagógico:** Aprimorar o domínio sobre os fundamentos do desenvolvimento Web (DOM manipulation, Fetch API, CSS Grid/Flexbox, ES6 Modules), construindo uma arquitetura modular e escalável utilizando apenas tecnologias nativas ("Vanilla JS"). Esta abordagem permite um entendimento profundo dos conceitos fundamentais e maior controle sobre o código.
 
 ---
 
@@ -107,6 +118,8 @@ cypher-lab-front/
 
 ## 🚀 Como Executar
 
+> ⚠️ **Importante:** Como o projeto utiliza ES6 Modules (`import`/`export`), você **não pode abrir** o arquivo `index.html` diretamente pelo sistema de arquivos (`file://`). É necessário usar um servidor HTTP local para que os módulos funcionem corretamente.
+
 ### Pré-requisitos
 
 - Navegador moderno (Chrome, Firefox, Edge)
@@ -199,6 +212,44 @@ const response = await fetchWithAuth('/api/user/progress');
 - Interface intuitiva
 - Cards informativos
 - Badges e indicadores de progresso
+
+### 🖼️ Identidade Visual
+
+O design foi prototipado no Figma antes da implementação, focando em:
+- **Acessibilidade:** Alto contraste e navegação clara
+- **Imersão:** Tema "Dark Mode/Hacker" para experiência gamificada
+- **Consistência:** Sistema de design coeso em todas as páginas
+- **Responsividade:** Adaptação para diferentes tamanhos de tela
+
+#### 📸 Screenshots
+
+<div align="center">
+  
+**Login**
+  
+![Login](images/docs/login.png)
+
+**Dashboard**
+
+![Dashboard](images/docs/dashboard.png)
+
+**Lista de Desafios**
+
+![Challenge List](images/docs/challengeList.png)
+
+**Desafio Individual**
+
+![Challenge](images/docs/challenge6.png)
+
+**Ranking**
+
+![Ranking](images/docs/ranking.png)
+
+**Perfil do Usuário**
+
+![Perfil](images/docs/perfil.png)
+
+</div>
 
 ---
 
